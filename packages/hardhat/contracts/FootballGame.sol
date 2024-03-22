@@ -10,7 +10,8 @@ contract FootballGame {
 		address challenger;
 		address opponent;
 		uint256 wagerAmount;
-		// Add more game-related state variables as needed
+		uint256[] challengerFormation;
+		uint256[] opponentFormation;
 	}
 
 	// Private storage for challenger_formation by game ID
@@ -23,6 +24,12 @@ contract FootballGame {
 	event GameProposed(
 		uint256 gameId,
 		address indexed challenger,
+		address indexed opponent,
+		uint256 wagerAmount
+	);
+
+	event GameAccepted(
+		uint256 gameId,
 		address indexed opponent,
 		uint256 wagerAmount
 	);
@@ -96,12 +103,36 @@ contract FootballGame {
 		games[newGameId] = Game({
 			challenger: msg.sender,
 			opponent: opponent,
-			wagerAmount: wagerAmount
+			wagerAmount: wagerAmount,
+			challengerFormation: new uint256[](0),
+			opponentFormation: new uint256[](0)
 		});
 
 		challenger_formation[newGameId] = formation;
 
 		// Emitting events to notify about the new game proposal
 		emit GameProposed(newGameId, msg.sender, opponent, wagerAmount);
+	}
+
+	function acceptGame(uint256 gameId, uint256[] memory formation) public {
+		Game storage game = games[gameId];
+
+		require(
+			msg.sender == game.opponent,
+			"Only the opponent can accept the game"
+		);
+		require(
+			footballCoin.allowance(msg.sender, address(this)) >=
+				game.wagerAmount,
+			"Insufficient allowance for wager"
+		);
+
+		// Transfer the wager amount from the opponent to the contract
+		footballCoin.transferFrom(msg.sender, address(this), game.wagerAmount);
+
+		game.opponentFormation = formation;
+
+		// Notify about game acceptance
+		emit GameAccepted(gameId, msg.sender, game.wagerAmount);
 	}
 }
