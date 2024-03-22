@@ -1370,7 +1370,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nomicfoundation/hardhat-ethers@npm:^3.0.5":
+"@nomicfoundation/hardhat-ethers@npm:^3.0.4, @nomicfoundation/hardhat-ethers@npm:^3.0.5":
   version: 3.0.5
   resolution: "@nomicfoundation/hardhat-ethers@npm:3.0.5"
   dependencies:
@@ -1848,6 +1848,7 @@ __metadata:
     prettier: ^2.8.4
     qrcode: ^1.5.1
     solidity-coverage: ^0.8.5
+    ten-hardhat-plugin: ^0.0.9
     ts-node: ^10.9.1
     typechain: ^8.1.0
     typescript: ^5.1.6
@@ -13192,6 +13193,18 @@ __metadata:
     mkdirp: ^1.0.3
     yallist: ^4.0.0
   checksum: db4d9fe74a2082c3a5016630092c54c8375ff3b280186938cfd104f2e089c4fd9bad58688ef6be9cf186a889671bf355c7cda38f09bbf60604b281715ca57f5c
+  languageName: node
+  linkType: hard
+
+"ten-hardhat-plugin@npm:^0.0.9":
+  version: 0.0.9
+  resolution: "ten-hardhat-plugin@npm:0.0.9"
+  dependencies:
+    "@nomicfoundation/hardhat-ethers": ^3.0.4
+    node-fetch: ^2.6.7
+  peerDependencies:
+    hardhat: ^2
+  checksum: 714427e36a8bb6d7a477b737bac711306a43148114ff6f9b8a4ef06f335f2b5d93b18ff003c91b510fed2e89691b9893869aa01dda7a40e61afe502c575ed572
   languageName: node
   linkType: hard
 
