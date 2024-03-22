@@ -16,15 +16,20 @@ contract FootballGame {
 		string result;
 	}
 
+	struct GameResult {
+		uint goalsHomeTeam;
+		uint goalsAwayTeam;
+		uint256[] goalScorersHome;
+		uint256[] goalScorersAway;
+	}
+
 	///////////////
 	// MAPPINGS  //
 	///////////////
 
-	// Private storage for challenger_formation by game ID
 	mapping(uint256 => uint256[]) private challenger_formation;
-
-	// A mapping to store game data, indexed by a game ID
 	mapping(uint256 => Game) public games;
+	mapping(uint256 => GameResult) public gameResults;
 	uint256 public gameCount;
 
 	///////////////
@@ -44,12 +49,7 @@ contract FootballGame {
 		uint256 wagerAmount
 	);
 
-	event GameFinished(
-		uint256 gameId,
-		address indexed challenger,
-		address indexed opponent,
-		string result // Placeholder for the game result, you can customize this
-	);
+	event GameFinished(uint256 gameId);
 
 	///////////////
 	// PLAYERS   //
@@ -166,7 +166,6 @@ contract FootballGame {
 		// Notify about game acceptance
 		emit GameAccepted(gameId, msg.sender, game.wagerAmount);
 	}
-
 	function revealOutcome(uint256 gameId) public {
 		Game storage game = games[gameId];
 
@@ -174,16 +173,19 @@ contract FootballGame {
 			msg.sender == game.challenger,
 			"Only the challenger can reveal the outcome"
 		);
-
 		require(!game.isFinished, "The game is already finished");
 
 		game.challengerFormation = challenger_formation[gameId];
 
-		string memory result = determineGameResult(game);
-		game.result = result;
+		GameResult memory result = determineGameResult(game);
+		gameResults[gameId] = result;
 
-		game.isFinished = true; // Mark the game as finished
-		emit GameFinished(gameId, game.challenger, game.opponent, result);
+		game.isFinished = true;
+
+		address winner = determineWinner(game, result);
+		payoutWinners(game, winner);
+
+		emit GameFinished(gameId);
 	}
 
 	///////////////
@@ -192,19 +194,43 @@ contract FootballGame {
 
 	function determineGameResult(
 		Game storage game
-	) private view returns (string memory) {
-		// Your logic to determine the game result
-		// You can access the game's data using `games[gameId]`
-
-		return "Placeholder result"; // Replace this with actual game result logic
+	) private view returns (GameResult memory) {
+		return
+			GameResult({
+				goalsHomeTeam: 1, // Placeholder
+				goalsAwayTeam: 2, // Placeholder
+				goalScorersHome: new uint256[](0),
+				goalScorersAway: new uint256[](0)
+			});
 	}
 
-	function payoutWinners(
-		Game storage game
-	) private view returns (string memory) {
-		// Your logic to determine the game result
-		// You can access the game's data using `games[gameId]`
-
-		return "Placeholder result"; // Replace this with actual game result logic
+	function determineWinner(
+		Game storage game,
+		GameResult memory result
+	) private view returns (address) {
+		if (result.goalsHomeTeam > result.goalsAwayTeam) {
+			return game.challenger;
+		} else if (result.goalsHomeTeam < result.goalsAwayTeam) {
+			return game.opponent;
+		}
+		return address(0); // It's a draw
+	}
+	function payoutWinners(Game storage game, address winner) private {
+		if (winner == address(0)) {
+			require(
+				footballCoin.transfer(game.challenger, game.wagerAmount),
+				"Refund to challenger failed"
+			);
+			require(
+				footballCoin.transfer(game.opponent, game.wagerAmount),
+				"Refund to opponent failed"
+			);
+		} else {
+			uint256 totalPot = game.wagerAmount * 2;
+			require(
+				footballCoin.transfer(winner, totalPot),
+				"Transfer to winner failed"
+			);
+		}
 	}
 }
