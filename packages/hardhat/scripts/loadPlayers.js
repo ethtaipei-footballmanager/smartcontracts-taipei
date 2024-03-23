@@ -1,10 +1,15 @@
 const { ethers } = require("hardhat");
+const fs = require('fs');
 
 async function main() {
     const [deployer] = await ethers.getSigners();
     console.log("Interacting with the smart contract using the account:", deployer.address);
 
-    const contractAddress = "0x940540782303c7380b28D0781d076ad05d1cB6eA";
+
+    const rawdata = fs.readFileSync('/home/arjanjohan/git/hack/taipei24/scaffold-eth-2/packages/hardhat/scripts/contractAddresses.json');
+    const addresses = JSON.parse(rawdata);
+
+    const contractAddress = addresses.FootballGame;
     const contractArtifact = await hre.artifacts.readArtifact("FootballGame");
     const contract = new ethers.Contract(contractAddress, contractArtifact.abi, deployer);
 

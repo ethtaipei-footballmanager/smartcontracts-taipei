@@ -1,10 +1,15 @@
 const { ethers } = require("hardhat");
+const fs = require('fs');
 
 async function main() {
-    const footballGameAddress = "0x940540782303c7380b28D0781d076ad05d1cB6eA";
-    const footballCoinAddress = "0xc314278217Ae8D99D95BdAb3432e174A1a483Ed1"; // Address of deployed FootballCoin contract
-    const challengerAddress = "0xbb1DF1ab33786Ac6B91d9D16b445c7b66825979e";
-    const opponentAddress = "0x0534eaF0FdCE77771b7988F8501AEac47f53f011";
+    
+    const rawdata = fs.readFileSync('/home/arjanjohan/git/hack/taipei24/scaffold-eth-2/packages/hardhat/scripts/contractAddresses.json');
+    const addresses = JSON.parse(rawdata);
+
+    const footballGameAddress = addresses.FootballGame;
+    const footballCoinAddress = addresses.FootballCoin;
+    const challengerAddress = addresses.ChallengerAddress;
+    const opponentAddress = addresses.OpponentAddress;
     const wagerAmount = "1000000000000000000"; // 1 token in Wei
     const defaultFormation = [1, 4, 5, 6, 7 , 8 ,9 ,10, 11, 12 ,13]
 
@@ -29,6 +34,7 @@ async function main() {
     console.log("gm");
     await proposeTx.wait();
 
+    console.log("Game proposed");
     // Assume game ID is 1 for this example. Retrieve actual game ID from the event log in a real scenario.
     const gameId = await footballGame.getGameCount();
     console.log(`Game ID: ${gameId}`);
