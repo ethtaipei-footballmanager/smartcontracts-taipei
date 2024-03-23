@@ -70,6 +70,7 @@ This function is only available after X blocks have passed since acceptGame was 
 
 ## Links
 
+- [Vercel deployment](https://frontend-taipei.vercel.app/)
 - [Github front-end repo](https://github.com/ethtaipei-footballmanager/frontend-taipei)
 - [Github smart contract repo](https://github.com/ethtaipei-footballmanager/smartcontracts-taipei/)
 - [Taikai](https://taikai.network/ethtaipei/hackathons/hackathon-2024/projects/clu3lzpn30igbw201tsucpoez)
