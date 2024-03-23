@@ -48,22 +48,31 @@ contract FootballGame {
 
 	event GameProposed(
 		uint256 gameId,
-		address indexed challenger,
-		address indexed opponent,
+		address indexed sender,
+		address indexed recipient,
 		uint256 wagerAmount,
 		uint blockNumber
 	);
 
 	event GameAccepted(
 		uint256 gameId,
-		address indexed opponent,
+		address indexed sender,
+		address indexed recipient,
 		uint256 wagerAmount,
 		uint blockNumber
 	);
 
-	event GameFinished(uint256 gameId);
+	event GameFinished(
+		uint256 gameId,
+		address indexed sender,
+		address indexed recipient
+	);
 
-	event GameFinishedByTimelock(uint256 gameId);
+	event GameFinishedByTimelock(
+		uint256 gameId,
+		address indexed sender,
+		address indexed recipient
+	);
 
 	///////////////
 	// PLAYERS   //
@@ -193,7 +202,13 @@ contract FootballGame {
 		game.blockNumber = block.number;
 
 		// Notify about game acceptance
-		emit GameAccepted(gameId, msg.sender, game.wagerAmount, block.number);
+		emit GameAccepted(
+			gameId,
+			msg.sender,
+			game.challenger,
+			game.wagerAmount,
+			block.number
+		);
 	}
 
 	function revealOutcome(uint256 gameId) public {
@@ -215,7 +230,7 @@ contract FootballGame {
 		address winner = determineWinner(game, result);
 		payoutWinners(game, winner);
 
-		emit GameFinished(gameId);
+		emit GameFinished(gameId, msg.sender, game.opponent);
 	}
 
 	function opponentClaimTimelock(uint256 gameId) public {
@@ -233,7 +248,7 @@ contract FootballGame {
 		game.isFinished = true;
 		payoutWinners(game, game.opponent);
 
-		emit GameFinishedByTimelock(gameId);
+		emit GameFinishedByTimelock(gameId, msg.sender, game.challenger);
 	}
 
 	///////////////
