@@ -279,12 +279,13 @@ contract FootballGame {
 			];
 			uint256 totalspeed = homePlayer.speed + awayPlayer.speed;
 			uint256 randomSpeed = uint256(prevRandao) % totalspeed;
-			if (homePlayer.speed > randomSpeed) {
+			if (homePlayer.speed < randomSpeed) {
 				// Home player attacks
 				if (homePlayer.attack > awayPlayer.defense) {
 					result.goalsHomeTeam++;
 				}
 			} else {
+				// Away player attacks
 				if (awayPlayer.attack > homePlayer.defense) {
 					result.goalsAwayTeam++;
 				}

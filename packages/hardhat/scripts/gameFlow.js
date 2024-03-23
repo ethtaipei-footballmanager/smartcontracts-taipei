@@ -22,8 +22,6 @@ async function main() {
     const FootballCoinContract = await ethers.getContractFactory("FootballCoin");
     let footballCoin = await FootballCoinContract.attach(footballCoinAddress).connect(challenger_signer);
 
-    console.log("footballcoin adderss " + footballCoinAddress);
-
     await new Promise(resolve => setTimeout(resolve, 1000));
     // Mint and approve tokens for challenger
     const mintTx = await footballCoin.mint(challengerAddress, mintAmount);
@@ -71,7 +69,7 @@ async function main() {
     const revealTx = await footballGame.revealOutcome(gameId);
     await revealTx.wait();
 
-    const results = await footballGame.getGameResult(gameId);
+    const results = await footballGame.games(gameId);
     console.log(`Game result: ${results}`);
 }
 
