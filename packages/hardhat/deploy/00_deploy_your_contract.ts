@@ -22,7 +22,7 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
   const { deployer } = await hre.getNamedAccounts();
   const { deploy } = hre.deployments;
 
-  const tokenContractAddress = "0x479a15a13358561c3fe9B982b69c3da191aB4F92"; // Replace this with the actual Token contract address
+  const tokenContractAddress = "0x3F19064e7490DCCb5eA03E9D1B24f96e71e0170a"; // Replace this with the actual Token contract address
   const blocks = 100; // Set to 100 blocks (approx 20-25 minutes) for testing purposes
 
   await deploy("FootballGame", {

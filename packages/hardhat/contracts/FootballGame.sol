@@ -7,15 +7,23 @@ contract FootballGame {
 	IERC20 public footballCoin;
 	uint public timelockBlocks;
 
+	enum Status {
+		Proposed,
+		Accepted,
+		Finished,
+		FinishedByTimelock
+	}
+
 	struct Game {
+		uint256 gameId;
 		address challenger;
 		address opponent;
 		uint256 wagerAmount;
 		uint256[] challengerFormation;
 		uint256[] opponentFormation;
-		bool isFinished;
 		GameResult result;
 		uint blockNumber;
+		Status status;
 	}
 
 	struct GameResult {
@@ -29,14 +37,7 @@ contract FootballGame {
 
 	mapping(uint256 => uint256[]) private challenger_formation;
 	mapping(uint256 => Game) public games;
-	mapping(uint256 => GameResult) public gameResults;
 	uint256 public gameCount;
-
-	function getGameResult(
-		uint256 gameId
-	) public view returns (GameResult memory) {
-		return gameResults[gameId];
-	}
 
 	function getGameCount() public view returns (uint256) {
 		return gameCount;
@@ -157,14 +158,15 @@ contract FootballGame {
 
 		uint256 newGameId = ++gameCount;
 		games[newGameId] = Game({
+			gameId: newGameId,
 			challenger: msg.sender,
 			opponent: opponent,
 			wagerAmount: wagerAmount,
 			challengerFormation: new uint256[](0),
 			opponentFormation: new uint256[](0),
-			isFinished: false,
 			result: GameResult({ goalsHomeTeam: 0, goalsAwayTeam: 0 }),
-			blockNumber: block.number
+			blockNumber: block.number,
+			status: Status.Proposed
 		});
 
 		challenger_formation[newGameId] = formation;
@@ -191,6 +193,8 @@ contract FootballGame {
 				game.wagerAmount,
 			"Insufficient allowance for wager"
 		);
+		require(game.status == Status.Proposed, "Incorrect state");
+
 		for (uint i = 0; i < formation.length; i++) {
 			require(players[formation[i]].player_id != 0, "Invalid player id");
 		}
@@ -200,6 +204,7 @@ contract FootballGame {
 
 		game.opponentFormation = formation;
 		game.blockNumber = block.number;
+		game.status = Status.Accepted;
 
 		// Notify about game acceptance
 		emit GameAccepted(
@@ -218,14 +223,14 @@ contract FootballGame {
 			msg.sender == game.challenger,
 			"Only the challenger can reveal the outcome"
 		);
-		require(!game.isFinished, "The game is already finished");
+		require(game.status == Status.Accepted, "Incorrect state");
 
 		game.challengerFormation = challenger_formation[gameId];
 
 		GameResult memory result = determineGameResult(game);
-		gameResults[gameId] = result;
+		game.result = result;
 
-		game.isFinished = true;
+		game.status = Status.Finished;
 
 		address winner = determineWinner(game, result);
 		payoutWinners(game, winner);
@@ -245,7 +250,8 @@ contract FootballGame {
 			"Opponent can claim timelock only after timelockBlocks have passed"
 		);
 
-		game.isFinished = true;
+		game.status = Status.FinishedByTimelock;
+
 		payoutWinners(game, game.opponent);
 
 		emit GameFinishedByTimelock(gameId, msg.sender, game.challenger);
@@ -266,7 +272,6 @@ contract FootballGame {
 		// Player memory homeGoalkeeper = players[game.challengerFormation[1]];
 		// Player memory awayGoalkeeper = players[game.opponentFormation[1]];
 		bytes32 prevRandao = blockhash(block.number - 1);
-		uint256[] memory randomValues = extractRandomValues(10, prevRandao);
 		for (uint i = 1; i < game.challengerFormation.length; i++) {
 			Player memory homePlayer = players[game.challengerFormation[i]];
 			Player memory awayPlayer = players[
@@ -276,33 +281,17 @@ contract FootballGame {
 			uint256 randomSpeed = uint256(prevRandao) % totalspeed;
 			if (homePlayer.speed > randomSpeed) {
 				// Home player attacks
-				if (homePlayer.attack > randomValues[i - 1]) {
+				if (homePlayer.attack > awayPlayer.defense) {
 					result.goalsHomeTeam++;
 				}
 			} else {
-				if (awayPlayer.attack > randomValues[i - 1]) {
+				if (awayPlayer.attack > homePlayer.defense) {
 					result.goalsAwayTeam++;
 				}
 			}
 		}
 
 		return result;
-	}
-
-	function extractRandomValues(
-		uint numberOfValues,
-		bytes32 prevRandao
-	) public pure returns (uint[] memory) {
-		require(numberOfValues > 0, "Number of values must be greater than 0");
-		uint[] memory randomValues = new uint[](numberOfValues);
-		uint256 randValue = uint256(prevRandao);
-
-		for (uint i = 0; i < numberOfValues; i++) {
-			randomValues[i] = randValue % 100;
-			randValue = randValue / 256; // Shift right by 2 hex digits
-		}
-
-		return randomValues;
 	}
 
 	function determineWinner(

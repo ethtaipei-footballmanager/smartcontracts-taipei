@@ -17,7 +17,7 @@
 
 - [Contents](#contents)
 - [Game flow](#game-flow)
-- [Hackathon bounties](#deployed-contracts)
+- [Scripts](#scripts)
 - [Links](#links)
 - [Team](#team)
 
@@ -59,10 +59,16 @@ Opponent calls this function to settle a game if the challenger does not call re
 
 This function is only available after X blocks have passed since acceptGame was executed. It pays out the wagered amounts to the opponent, punishing the challenger for ghosting.
 
+## Scripts
+
+To test the smart contract interactions via a script, execute these scripts:
+`/scripts/loadPlayers.js` - run once to load player profiles for 6 teams.
+`/scripts/gameFlow.js` - run to test a game of two identical teams matched against eachother.
+
 ## Deployed contracts
 
 - TEN deployed contract 0x492bD2595393678F4E7ef2a2D3136860D4d83378 in tx 0x651f86c420c77861bccc9e1f36eff6dcfaa3af4387fd0c0b9aa02c9402667c29
-- [Scroll](https://sepolia.scrollscan.com/address/0xc54170C714FFd8944e78719C1D0B13C9968E4F32#code)
+- [Scroll](https://sepolia.scrollscan.com/address/0x1806a13729aDBC602e079F5d00FbA9345BE7381c#code)
 - [Linea](https://goerli.lineascan.build/address/address/0x1e61235A37ee5642d71c6c3f060b6E94b05EE6E7#code)
 - [Optimism](https://sepolia-optimism.etherscan.io/address/0xab2EE87906222B433AF6836b1f1588b79294f67e)
 - [Polygon zkEVM cardona](https://cardona-zkevm.polygonscan.com/address/0xab2EE87906222B433AF6836b1f1588b79294f67e)
