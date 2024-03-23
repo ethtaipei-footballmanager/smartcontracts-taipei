@@ -1565,7 +1565,7 @@ const deployedContracts = {
       },
     },
     FootballGame: {
-      address: "0x492bD2595393678F4E7ef2a2D3136860D4d83378",
+      address: "0x0238E08bFCd6252c70c3A1C30eeD44D70fe53156",
       abi: [
         {
           inputs: [
@@ -1595,7 +1595,13 @@ const deployedContracts = {
             {
               indexed: true,
               internalType: "address",
-              name: "opponent",
+              name: "sender",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "recipient",
               type: "address",
             },
             {
@@ -1623,6 +1629,18 @@ const deployedContracts = {
               name: "gameId",
               type: "uint256",
             },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "recipient",
+              type: "address",
+            },
           ],
           name: "GameFinished",
           type: "event",
@@ -1635,6 +1653,18 @@ const deployedContracts = {
               internalType: "uint256",
               name: "gameId",
               type: "uint256",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "recipient",
+              type: "address",
             },
           ],
           name: "GameFinishedByTimelock",
@@ -1652,13 +1682,13 @@ const deployedContracts = {
             {
               indexed: true,
               internalType: "address",
-              name: "challenger",
+              name: "sender",
               type: "address",
             },
             {
               indexed: true,
               internalType: "address",
-              name: "opponent",
+              name: "recipient",
               type: "address",
             },
             {
