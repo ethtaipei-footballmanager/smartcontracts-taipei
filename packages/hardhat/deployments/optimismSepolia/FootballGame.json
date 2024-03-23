@@ -1,5 +1,5 @@
 {
-  "address": "0x072117443CEb3920d9D95d2F005b23FeC9E761aD",
+  "address": "0xab2EE87906222B433AF6836b1f1588b79294f67e",
   "abi": [
     {
       "inputs": [
@@ -7,6 +7,11 @@
           "internalType": "contract IERC20",
           "name": "_footballCoin",
           "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_timelockBlocks",
+          "type": "uint256"
         }
       ],
       "stateMutability": "nonpayable",
@@ -31,6 +36,12 @@
           "indexed": false,
           "internalType": "uint256",
           "name": "wagerAmount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "blockNumber",
           "type": "uint256"
         }
       ],
@@ -58,6 +69,19 @@
           "internalType": "uint256",
           "name": "gameId",
           "type": "uint256"
+        }
+      ],
+      "name": "GameFinishedByTimelock",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "gameId",
+          "type": "uint256"
         },
         {
           "indexed": true,
@@ -75,6 +99,12 @@
           "indexed": false,
           "internalType": "uint256",
           "name": "wagerAmount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "blockNumber",
           "type": "uint256"
         }
       ],
@@ -158,6 +188,30 @@
       "type": "function"
     },
     {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "numberOfValues",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "prevRandao",
+          "type": "bytes32"
+        }
+      ],
+      "name": "extractRandomValues",
+      "outputs": [
+        {
+          "internalType": "uint256[]",
+          "name": "",
+          "type": "uint256[]"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
       "inputs": [],
       "name": "footballCoin",
       "outputs": [
@@ -238,12 +292,86 @@
           "type": "bool"
         },
         {
-          "internalType": "string",
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "goalsHomeTeam",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "goalsAwayTeam",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct FootballGame.GameResult",
           "name": "result",
-          "type": "string"
+          "type": "tuple"
+        },
+        {
+          "internalType": "uint256",
+          "name": "blockNumber",
+          "type": "uint256"
         }
       ],
       "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getGameCount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "gameId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getGameResult",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "goalsHomeTeam",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "goalsAwayTeam",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct FootballGame.GameResult",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "gameId",
+          "type": "uint256"
+        }
+      ],
+      "name": "opponentClaimTimelock",
+      "outputs": [],
+      "stateMutability": "nonpayable",
       "type": "function"
     },
     {
@@ -358,32 +486,46 @@
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "timelockBlocks",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
     }
   ],
-  "transactionHash": "0x48e545e3a9d0fee75f9611ba6b38dc7e2ffe5e4542b171a0a6d081cf9915a3c6",
+  "transactionHash": "0xc858efcb12650b059c8e1afcfe752d26d402d31334f612e6ea645850730aaa79",
   "receipt": {
     "to": null,
     "from": "0xbb1DF1ab33786Ac6B91d9D16b445c7b66825979e",
-    "contractAddress": "0x072117443CEb3920d9D95d2F005b23FeC9E761aD",
+    "contractAddress": "0xab2EE87906222B433AF6836b1f1588b79294f67e",
     "transactionIndex": 1,
-    "gasUsed": "1221263",
+    "gasUsed": "1572150",
     "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
-    "blockHash": "0x1b010983c5c45601e0bffcca4b5d8b935505b8cc7a635fc1a596cebaa94b51b4",
-    "transactionHash": "0x48e545e3a9d0fee75f9611ba6b38dc7e2ffe5e4542b171a0a6d081cf9915a3c6",
+    "blockHash": "0x3fe7526b1d34941b2bd7082011f21ab21a61443d001be0071cfdfe644d068266",
+    "transactionHash": "0xc858efcb12650b059c8e1afcfe752d26d402d31334f612e6ea645850730aaa79",
     "logs": [],
-    "blockNumber": 9678248,
-    "cumulativeGasUsed": "1265102",
+    "blockNumber": 9692188,
+    "cumulativeGasUsed": "1615989",
     "status": 1,
     "byzantium": true
   },
   "args": [
-    "0xbb1DF1ab33786Ac6B91d9D16b445c7b66825979e"
+    "0xc314278217Ae8D99D95BdAb3432e174A1a483Ed1",
+    100
   ],
-  "numDeployments": 1,
-  "solcInputHash": "507a89020474a2d1cf9b75017992f8e7",
-  "metadata": "{\"compiler\":{\"version\":\"0.8.17+commit.8df45f5f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"_footballCoin\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"gameId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"opponent\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"wagerAmount\",\"type\":\"uint256\"}],\"name\":\"GameAccepted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"gameId\",\"type\":\"uint256\"}],\"name\":\"GameFinished\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"gameId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"challenger\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"opponent\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"wagerAmount\",\"type\":\"uint256\"}],\"name\":\"GameProposed\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"gameId\",\"type\":\"uint256\"},{\"internalType\":\"uint256[]\",\"name\":\"formation\",\"type\":\"uint256[]\"}],\"name\":\"acceptGame\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"playerId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"teamId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"position\",\"type\":\"uint256\"},{\"internalType\":\"uint128\",\"name\":\"attack\",\"type\":\"uint128\"},{\"internalType\":\"uint128\",\"name\":\"defense\",\"type\":\"uint128\"},{\"internalType\":\"uint128\",\"name\":\"speed\",\"type\":\"uint128\"},{\"internalType\":\"uint128\",\"name\":\"power\",\"type\":\"uint128\"},{\"internalType\":\"uint128\",\"name\":\"stamina\",\"type\":\"uint128\"},{\"internalType\":\"uint128\",\"name\":\"technique\",\"type\":\"uint128\"},{\"internalType\":\"uint128\",\"name\":\"goalkeeping\",\"type\":\"uint128\"}],\"name\":\"addPlayer\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"footballCoin\",\"outputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"gameCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"gameResults\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"goalsHomeTeam\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"goalsAwayTeam\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"games\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"challenger\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"opponent\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"wagerAmount\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"isFinished\",\"type\":\"bool\"},{\"internalType\":\"string\",\"name\":\"result\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"players\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"player_id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"team_id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"position\",\"type\":\"uint256\"},{\"internalType\":\"uint128\",\"name\":\"attack\",\"type\":\"uint128\"},{\"internalType\":\"uint128\",\"name\":\"defense\",\"type\":\"uint128\"},{\"internalType\":\"uint128\",\"name\":\"speed\",\"type\":\"uint128\"},{\"internalType\":\"uint128\",\"name\":\"power\",\"type\":\"uint128\"},{\"internalType\":\"uint128\",\"name\":\"stamina\",\"type\":\"uint128\"},{\"internalType\":\"uint128\",\"name\":\"technique\",\"type\":\"uint128\"},{\"internalType\":\"uint128\",\"name\":\"goalkeeping\",\"type\":\"uint128\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"opponent\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"wagerAmount\",\"type\":\"uint256\"},{\"internalType\":\"uint256[]\",\"name\":\"formation\",\"type\":\"uint256[]\"}],\"name\":\"proposeGame\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"gameId\",\"type\":\"uint256\"}],\"name\":\"revealOutcome\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/FootballGame.sol\":\"FootballGame\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v4.9.0) (token/ERC20/IERC20.sol)\\n\\npragma solidity ^0.8.0;\\n\\n/**\\n * @dev Interface of the ERC20 standard as defined in the EIP.\\n */\\ninterface IERC20 {\\n    /**\\n     * @dev Emitted when `value` tokens are moved from one account (`from`) to\\n     * another (`to`).\\n     *\\n     * Note that `value` may be zero.\\n     */\\n    event Transfer(address indexed from, address indexed to, uint256 value);\\n\\n    /**\\n     * @dev Emitted when the allowance of a `spender` for an `owner` is set by\\n     * a call to {approve}. `value` is the new allowance.\\n     */\\n    event Approval(address indexed owner, address indexed spender, uint256 value);\\n\\n    /**\\n     * @dev Returns the amount of tokens in existence.\\n     */\\n    function totalSupply() external view returns (uint256);\\n\\n    /**\\n     * @dev Returns the amount of tokens owned by `account`.\\n     */\\n    function balanceOf(address account) external view returns (uint256);\\n\\n    /**\\n     * @dev Moves `amount` tokens from the caller's account to `to`.\\n     *\\n     * Returns a boolean value indicating whether the operation succeeded.\\n     *\\n     * Emits a {Transfer} event.\\n     */\\n    function transfer(address to, uint256 amount) external returns (bool);\\n\\n    /**\\n     * @dev Returns the remaining number of tokens that `spender` will be\\n     * allowed to spend on behalf of `owner` through {transferFrom}. This is\\n     * zero by default.\\n     *\\n     * This value changes when {approve} or {transferFrom} are called.\\n     */\\n    function allowance(address owner, address spender) external view returns (uint256);\\n\\n    /**\\n     * @dev Sets `amount` as the allowance of `spender` over the caller's tokens.\\n     *\\n     * Returns a boolean value indicating whether the operation succeeded.\\n     *\\n     * IMPORTANT: Beware that changing an allowance with this method brings the risk\\n     * that someone may use both the old and the new allowance by unfortunate\\n     * transaction ordering. One possible solution to mitigate this race\\n     * condition is to first reduce the spender's allowance to 0 and set the\\n     * desired value afterwards:\\n     * https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729\\n     *\\n     * Emits an {Approval} event.\\n     */\\n    function approve(address spender, uint256 amount) external returns (bool);\\n\\n    /**\\n     * @dev Moves `amount` tokens from `from` to `to` using the\\n     * allowance mechanism. `amount` is then deducted from the caller's\\n     * allowance.\\n     *\\n     * Returns a boolean value indicating whether the operation succeeded.\\n     *\\n     * Emits a {Transfer} event.\\n     */\\n    function transferFrom(address from, address to, uint256 amount) external returns (bool);\\n}\\n\",\"keccak256\":\"0x287b55befed2961a7eabd7d7b1b2839cbca8a5b80ef8dcbb25ed3d4c2002c305\",\"license\":\"MIT\"},\"contracts/FootballGame.sol\":{\"content\":\"//SPDX-License-Identifier: MIT\\npragma solidity >=0.8.0 <0.9.0;\\nimport \\\"@openzeppelin/contracts/token/ERC20/IERC20.sol\\\";\\n\\ncontract FootballGame {\\n\\taddress public owner;\\n\\tIERC20 public footballCoin;\\n\\n\\tstruct Game {\\n\\t\\taddress challenger;\\n\\t\\taddress opponent;\\n\\t\\tuint256 wagerAmount;\\n\\t\\tuint256[] challengerFormation;\\n\\t\\tuint256[] opponentFormation;\\n\\t\\tbool isFinished;\\n\\t\\tstring result;\\n\\t}\\n\\n\\tstruct GameResult {\\n\\t\\tuint goalsHomeTeam;\\n\\t\\tuint goalsAwayTeam;\\n\\t\\tuint256[] goalScorersHome;\\n\\t\\tuint256[] goalScorersAway;\\n\\t}\\n\\n\\t///////////////\\n\\t// MAPPINGS  //\\n\\t///////////////\\n\\n\\tmapping(uint256 => uint256[]) private challenger_formation;\\n\\tmapping(uint256 => Game) public games;\\n\\tmapping(uint256 => GameResult) public gameResults;\\n\\tuint256 public gameCount;\\n\\n\\t///////////////\\n\\t// EVENTS  //\\n\\t///////////////\\n\\n\\tevent GameProposed(\\n\\t\\tuint256 gameId,\\n\\t\\taddress indexed challenger,\\n\\t\\taddress indexed opponent,\\n\\t\\tuint256 wagerAmount\\n\\t);\\n\\n\\tevent GameAccepted(\\n\\t\\tuint256 gameId,\\n\\t\\taddress indexed opponent,\\n\\t\\tuint256 wagerAmount\\n\\t);\\n\\n\\tevent GameFinished(uint256 gameId);\\n\\n\\t///////////////\\n\\t// PLAYERS   //\\n\\t///////////////\\n\\n\\tstruct Player {\\n\\t\\tuint256 player_id;\\n\\t\\tuint256 team_id;\\n\\t\\tuint256 position; // 0 = Empty, 1 = Goalkeeper, 2 = Defense, 3 = Midfield, 4 = Attack\\n\\t\\tuint128 attack;\\n\\t\\tuint128 defense;\\n\\t\\tuint128 speed;\\n\\t\\tuint128 power;\\n\\t\\tuint128 stamina;\\n\\t\\tuint128 technique;\\n\\t\\tuint128 goalkeeping;\\n\\t}\\n\\n\\tmapping(uint256 => Player) public players;\\n\\n\\tfunction addPlayer(\\n\\t\\tuint256 playerId,\\n\\t\\tuint256 teamId,\\n\\t\\tuint256 position,\\n\\t\\tuint128 attack,\\n\\t\\tuint128 defense,\\n\\t\\tuint128 speed,\\n\\t\\tuint128 power,\\n\\t\\tuint128 stamina,\\n\\t\\tuint128 technique,\\n\\t\\tuint128 goalkeeping\\n\\t) public onlyOwner {\\n\\t\\tPlayer memory newPlayer = Player({\\n\\t\\t\\tplayer_id: playerId,\\n\\t\\t\\tteam_id: teamId,\\n\\t\\t\\tposition: position,\\n\\t\\t\\tattack: attack,\\n\\t\\t\\tdefense: defense,\\n\\t\\t\\tspeed: speed,\\n\\t\\t\\tpower: power,\\n\\t\\t\\tstamina: stamina,\\n\\t\\t\\ttechnique: technique,\\n\\t\\t\\tgoalkeeping: goalkeeping\\n\\t\\t});\\n\\n\\t\\tplayers[playerId] = newPlayer;\\n\\t}\\n\\n\\t///////////////\\n\\t// CONSTRUCTOR  //\\n\\t///////////////\\n\\n\\tconstructor(IERC20 _footballCoin) {\\n\\t\\towner = msg.sender;\\n\\t\\tfootballCoin = _footballCoin;\\n\\t}\\n\\tmodifier onlyOwner() {\\n\\t\\trequire(msg.sender == owner, \\\"Caller is not the owner\\\");\\n\\t\\t_;\\n\\t}\\n\\n\\t///////////////\\n\\t// GAME FUNCTIONS  //\\n\\t///////////////\\n\\n\\tfunction proposeGame(\\n\\t\\taddress opponent,\\n\\t\\tuint256 wagerAmount,\\n\\t\\tuint256[] memory formation\\n\\t) public {\\n\\t\\trequire(\\n\\t\\t\\tfootballCoin.allowance(msg.sender, address(this)) >= wagerAmount,\\n\\t\\t\\t\\\"Insufficient allowance for wager\\\"\\n\\t\\t);\\n\\n\\t\\t// Transfer the wager amount from the challenger to the contract\\n\\t\\tfootballCoin.transferFrom(msg.sender, address(this), wagerAmount);\\n\\n\\t\\tuint256 newGameId = ++gameCount;\\n\\t\\tgames[newGameId] = Game({\\n\\t\\t\\tchallenger: msg.sender,\\n\\t\\t\\topponent: opponent,\\n\\t\\t\\twagerAmount: wagerAmount,\\n\\t\\t\\tchallengerFormation: new uint256[](0),\\n\\t\\t\\topponentFormation: new uint256[](0),\\n\\t\\t\\tisFinished: false,\\n\\t\\t\\tresult: \\\"\\\"\\n\\t\\t});\\n\\n\\t\\tchallenger_formation[newGameId] = formation;\\n\\n\\t\\t// Emitting events to notify about the new game proposal\\n\\t\\temit GameProposed(newGameId, msg.sender, opponent, wagerAmount);\\n\\t}\\n\\n\\tfunction acceptGame(uint256 gameId, uint256[] memory formation) public {\\n\\t\\tGame storage game = games[gameId];\\n\\n\\t\\trequire(\\n\\t\\t\\tmsg.sender == game.opponent,\\n\\t\\t\\t\\\"Only the opponent can accept the game\\\"\\n\\t\\t);\\n\\t\\trequire(\\n\\t\\t\\tfootballCoin.allowance(msg.sender, address(this)) >=\\n\\t\\t\\t\\tgame.wagerAmount,\\n\\t\\t\\t\\\"Insufficient allowance for wager\\\"\\n\\t\\t);\\n\\n\\t\\t// Transfer the wager amount from the opponent to the contract\\n\\t\\tfootballCoin.transferFrom(msg.sender, address(this), game.wagerAmount);\\n\\n\\t\\tgame.opponentFormation = formation;\\n\\n\\t\\t// Notify about game acceptance\\n\\t\\temit GameAccepted(gameId, msg.sender, game.wagerAmount);\\n\\t}\\n\\tfunction revealOutcome(uint256 gameId) public {\\n\\t\\tGame storage game = games[gameId];\\n\\n\\t\\trequire(\\n\\t\\t\\tmsg.sender == game.challenger,\\n\\t\\t\\t\\\"Only the challenger can reveal the outcome\\\"\\n\\t\\t);\\n\\t\\trequire(!game.isFinished, \\\"The game is already finished\\\");\\n\\n\\t\\tgame.challengerFormation = challenger_formation[gameId];\\n\\n\\t\\tGameResult memory result = determineGameResult(game);\\n\\t\\tgameResults[gameId] = result;\\n\\n\\t\\tgame.isFinished = true;\\n\\n\\t\\taddress winner = determineWinner(game, result);\\n\\t\\tpayoutWinners(game, winner);\\n\\n\\t\\temit GameFinished(gameId);\\n\\t}\\n\\n\\t///////////////\\n\\t// HELPER FUNCTIONS  //\\n\\t///////////////\\n\\n\\tfunction determineGameResult(\\n\\t\\tGame storage game\\n\\t) private view returns (GameResult memory) {\\n\\t\\treturn\\n\\t\\t\\tGameResult({\\n\\t\\t\\t\\tgoalsHomeTeam: 1, // Placeholder\\n\\t\\t\\t\\tgoalsAwayTeam: 2, // Placeholder\\n\\t\\t\\t\\tgoalScorersHome: new uint256[](0),\\n\\t\\t\\t\\tgoalScorersAway: new uint256[](0)\\n\\t\\t\\t});\\n\\t}\\n\\n\\tfunction determineWinner(\\n\\t\\tGame storage game,\\n\\t\\tGameResult memory result\\n\\t) private view returns (address) {\\n\\t\\tif (result.goalsHomeTeam > result.goalsAwayTeam) {\\n\\t\\t\\treturn game.challenger;\\n\\t\\t} else if (result.goalsHomeTeam < result.goalsAwayTeam) {\\n\\t\\t\\treturn game.opponent;\\n\\t\\t}\\n\\t\\treturn address(0); // It's a draw\\n\\t}\\n\\tfunction payoutWinners(Game storage game, address winner) private {\\n\\t\\tif (winner == address(0)) {\\n\\t\\t\\trequire(\\n\\t\\t\\t\\tfootballCoin.transfer(game.challenger, game.wagerAmount),\\n\\t\\t\\t\\t\\\"Refund to challenger failed\\\"\\n\\t\\t\\t);\\n\\t\\t\\trequire(\\n\\t\\t\\t\\tfootballCoin.transfer(game.opponent, game.wagerAmount),\\n\\t\\t\\t\\t\\\"Refund to opponent failed\\\"\\n\\t\\t\\t);\\n\\t\\t} else {\\n\\t\\t\\tuint256 totalPot = game.wagerAmount * 2;\\n\\t\\t\\trequire(\\n\\t\\t\\t\\tfootballCoin.transfer(winner, totalPot),\\n\\t\\t\\t\\t\\\"Transfer to winner failed\\\"\\n\\t\\t\\t);\\n\\t\\t}\\n\\t}\\n}\\n\",\"keccak256\":\"0x18a1c7a89872450ff25cf822be8d0d3e2e3b282a3198cf9ba24575189bc8a33b\",\"license\":\"MIT\"}},\"version\":1}",
-  "bytecode": "0x608060405234801561001057600080fd5b506040516114e93803806114e983398101604081905261002f91610062565b60008054336001600160a01b031991821617909155600180549091166001600160a01b0392909216919091179055610092565b60006020828403121561007457600080fd5b81516001600160a01b038116811461008b57600080fd5b9392505050565b611448806100a16000396000f3fe608060405234801561001057600080fd5b506004361061009e5760003560e01c80638da5cb5b116100665780638da5cb5b1461013a578063cd86f8101461014d578063cfb9479814610160578063f71d96cb14610173578063fdba1b7c1461024757600080fd5b8063117a5b90146100a35780634d1975b4146100d0578063506d7e2d146100e757806359c892a9146100fc57806364407bad1461010f575b600080fd5b6100b66100b1366004610f91565b610283565b6040516100c7959493929190610faa565b60405180910390f35b6100d960055481565b6040519081526020016100c7565b6100fa6100f5366004611040565b61034d565b005b6100fa61010a366004611196565b610496565b600154610122906001600160a01b031681565b6040516001600160a01b0390911681526020016100c7565b600054610122906001600160a01b031681565b6100fa61015b3660046111dd565b6106b6565b6100fa61016e366004610f91565b6109c3565b6101ea610181366004610f91565b600660208190526000918252604090912080546001820154600283015460038401546004850154600586015495909601549395929491936001600160801b0380831694600160801b9384900482169481831694918290048316938184169392909104821691168a565b604080519a8b5260208b0199909952978901969096526001600160801b039485166060890152928416608088015290831660a0870152821660c0860152811660e085015290811661010084015216610120820152610140016100c7565b61026e610255366004610f91565b6004602052600090815260409020805460019091015482565b604080519283526020830191909152016100c7565b600360205260009081526040902080546001820154600283015460058401546006850180546001600160a01b03958616969490951694929360ff909216926102ca90611242565b80601f01602080910402602001604051908101604052809291908181526020018280546102f690611242565b80156103435780601f1061031857610100808354040283529160200191610343565b820191906000526020600020905b81548152906001019060200180831161032657829003601f168201915b5050505050905085565b6000546001600160a01b031633146103ac5760405162461bcd60e51b815260206004820152601760248201527f43616c6c6572206973206e6f7420746865206f776e657200000000000000000060448201526064015b60405180910390fd5b60408051610140810182528b815260208082019b8c528183019a8b526001600160801b03998a1660608301908152988a1660808301908152978a1660a08301908152968a1660c08301908152958a1660e08301908152948a166101008301908152938a16610120830190815260009d8e5260069182905292909c2090518155995160018b0155975160028a015594519351938616600160801b94871685021760038901559151905190851690851683021760048701555191519183169183160217600584015590519190920180546fffffffffffffffffffffffffffffffff191691909216179055565b600082815260036020526040902060018101546001600160a01b0316331461050e5760405162461bcd60e51b815260206004820152602560248201527f4f6e6c7920746865206f70706f6e656e742063616e20616363657074207468656044820152642067616d6560d81b60648201526084016103a3565b6002810154600154604051636eb1769f60e11b81523360048201523060248201526001600160a01b039091169063dd62ed3e90604401602060405180830381865afa158015610561573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610585919061127c565b10156105d35760405162461bcd60e51b815260206004820181905260248201527f496e73756666696369656e7420616c6c6f77616e636520666f7220776167657260448201526064016103a3565b60015460028201546040516323b872dd60e01b815233600482015230602482015260448101919091526001600160a01b03909116906323b872dd906064016020604051808303816000875af1158015610630573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906106549190611295565b50815161066a9060048301906020850190610ef1565b50600281015460405133917fc12989f4ffb898af45d9bec31ea6e4b22af6acc72ca98399ca9a866e72c954f8916106a991878252602082015260400190565b60405180910390a2505050565b600154604051636eb1769f60e11b815233600482015230602482015283916001600160a01b03169063dd62ed3e90604401602060405180830381865afa158015610704573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610728919061127c565b10156107765760405162461bcd60e51b815260206004820181905260248201527f496e73756666696369656e7420616c6c6f77616e636520666f7220776167657260448201526064016103a3565b6001546040516323b872dd60e01b8152336004820152306024820152604481018490526001600160a01b03909116906323b872dd906064016020604051808303816000875af11580156107cd573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906107f19190611295565b506000600560008154610803906112d4565b91829055506040805160e0810182523381526001600160a01b038716602082015290810185905290915060608101600060405190808252806020026020018201604052801561085c578160200160208202803683370190505b508152602001600060405190808252806020026020018201604052801561088d578160200160208202803683370190505b5081526000602080830182905260408051808301825283815293810193909352848252600380825291839020845181546001600160a01b039182166001600160a01b0319918216178355868401516001840180549190931691161790559284015160028401556060840151805161090b938501929190910190610ef1565b5060808201518051610927916004840191602090910190610ef1565b5060a082015160058201805460ff191691151591909117905560c08201516006820190610954908261133b565b5050506000818152600260209081526040909120835161097692850190610ef1565b5060408051828152602081018590526001600160a01b0386169133917f92ed5225f997614241753c97f8dff081ab07610d11f06f0c031e4421679af13f910160405180910390a350505050565b600081815260036020526040902080546001600160a01b03163314610a3d5760405162461bcd60e51b815260206004820152602a60248201527f4f6e6c7920746865206368616c6c656e6765722063616e2072657665616c20746044820152696865206f7574636f6d6560b01b60648201526084016103a3565b600581015460ff1615610a925760405162461bcd60e51b815260206004820152601c60248201527f5468652067616d6520697320616c72656164792066696e69736865640000000060448201526064016103a3565b60008281526002602052604090208054610ab0916003840191610f3c565b506000610abc82610b75565b600084815260046020908152604091829020835181558184015160018201559183015180519394508493610af69260028501920190610ef1565b5060608201518051610b12916003840191602090910190610ef1565b50505060058201805460ff191660011790556000610b308383610c1d565b9050610b3c8382610c6b565b6040518481527f6543ec12c6e53f26532beb5289ef5732dcd77c2e9e9921ae42b695905f5e84c09060200160405180910390a150505050565b610ba06040518060800160405280600081526020016000815260200160608152602001606081525090565b6040805160808101825260018152600260208201529081016000604051908082528060200260200182016040528015610be3578160200160208202803683370190505b5081526020016000604051908082528060200260200182016040528015610c14578160200160208202803683370190505b50905292915050565b6000816020015182600001511115610c40575081546001600160a01b0316610c65565b602082015182511015610c61575060018201546001600160a01b0316610c65565b5060005b92915050565b6001600160a01b038116610e14576001548254600284015460405163a9059cbb60e01b81526001600160a01b039283166004820152602481019190915291169063a9059cbb906044016020604051808303816000875af1158015610cd3573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610cf79190611295565b610d435760405162461bcd60e51b815260206004820152601b60248201527f526566756e6420746f206368616c6c656e676572206661696c6564000000000060448201526064016103a3565b6001805490830154600284015460405163a9059cbb60e01b81526001600160a01b039283166004820152602481019190915291169063a9059cbb906044016020604051808303816000875af1158015610da0573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610dc49190611295565b610e105760405162461bcd60e51b815260206004820152601960248201527f526566756e6420746f206f70706f6e656e74206661696c65640000000000000060448201526064016103a3565b5050565b600082600201546002610e2791906113fb565b60015460405163a9059cbb60e01b81526001600160a01b0385811660048301526024820184905292935091169063a9059cbb906044016020604051808303816000875af1158015610e7c573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610ea09190611295565b610eec5760405162461bcd60e51b815260206004820152601960248201527f5472616e7366657220746f2077696e6e6572206661696c65640000000000000060448201526064016103a3565b505050565b828054828255906000526020600020908101928215610f2c579160200282015b82811115610f2c578251825591602001919060010190610f11565b50610f38929150610f7c565b5090565b828054828255906000526020600020908101928215610f2c5760005260206000209182015b82811115610f2c578254825591600101919060010190610f61565b5b80821115610f385760008155600101610f7d565b600060208284031215610fa357600080fd5b5035919050565b600060018060a01b038088168352602081881681850152866040850152851515606085015260a06080850152845191508160a085015260005b82811015610fff5785810182015185820160c001528101610fe3565b5050600060c0828501015260c0601f19601f8301168401019150509695505050505050565b80356001600160801b038116811461103b57600080fd5b919050565b6000806000806000806000806000806101408b8d03121561106057600080fd5b8a35995060208b0135985060408b0135975061107e60608c01611024565b965061108c60808c01611024565b955061109a60a08c01611024565b94506110a860c08c01611024565b93506110b660e08c01611024565b92506110c56101008c01611024565b91506110d46101208c01611024565b90509295989b9194979a5092959850565b634e487b7160e01b600052604160045260246000fd5b600082601f83011261110c57600080fd5b8135602067ffffffffffffffff80831115611129576111296110e5565b8260051b604051601f19603f8301168101818110848211171561114e5761114e6110e5565b60405293845285810183019383810192508785111561116c57600080fd5b83870191505b8482101561118b57813583529183019190830190611172565b979650505050505050565b600080604083850312156111a957600080fd5b82359150602083013567ffffffffffffffff8111156111c757600080fd5b6111d3858286016110fb565b9150509250929050565b6000806000606084860312156111f257600080fd5b83356001600160a01b038116811461120957600080fd5b925060208401359150604084013567ffffffffffffffff81111561122c57600080fd5b611238868287016110fb565b9150509250925092565b600181811c9082168061125657607f821691505b60208210810361127657634e487b7160e01b600052602260045260246000fd5b50919050565b60006020828403121561128e57600080fd5b5051919050565b6000602082840312156112a757600080fd5b815180151581146112b757600080fd5b9392505050565b634e487b7160e01b600052601160045260246000fd5b6000600182016112e6576112e66112be565b5060010190565b601f821115610eec57600081815260208120601f850160051c810160208610156113145750805b601f850160051c820191505b8181101561133357828155600101611320565b505050505050565b815167ffffffffffffffff811115611355576113556110e5565b611369816113638454611242565b846112ed565b602080601f83116001811461139e57600084156113865750858301515b600019600386901b1c1916600185901b178555611333565b600085815260208120601f198616915b828110156113cd578886015182559484019460019091019084016113ae565b50858210156113eb5787850151600019600388901b60f8161c191681555b5050505050600190811b01905550565b8082028115828204841417610c6557610c656112be56fea2646970667358221220272b746497f36ec85ae4ae4fea9c559c14b6a033fe10d9fa04a506c82ee42a3664736f6c63430008110033",
-  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061009e5760003560e01c80638da5cb5b116100665780638da5cb5b1461013a578063cd86f8101461014d578063cfb9479814610160578063f71d96cb14610173578063fdba1b7c1461024757600080fd5b8063117a5b90146100a35780634d1975b4146100d0578063506d7e2d146100e757806359c892a9146100fc57806364407bad1461010f575b600080fd5b6100b66100b1366004610f91565b610283565b6040516100c7959493929190610faa565b60405180910390f35b6100d960055481565b6040519081526020016100c7565b6100fa6100f5366004611040565b61034d565b005b6100fa61010a366004611196565b610496565b600154610122906001600160a01b031681565b6040516001600160a01b0390911681526020016100c7565b600054610122906001600160a01b031681565b6100fa61015b3660046111dd565b6106b6565b6100fa61016e366004610f91565b6109c3565b6101ea610181366004610f91565b600660208190526000918252604090912080546001820154600283015460038401546004850154600586015495909601549395929491936001600160801b0380831694600160801b9384900482169481831694918290048316938184169392909104821691168a565b604080519a8b5260208b0199909952978901969096526001600160801b039485166060890152928416608088015290831660a0870152821660c0860152811660e085015290811661010084015216610120820152610140016100c7565b61026e610255366004610f91565b6004602052600090815260409020805460019091015482565b604080519283526020830191909152016100c7565b600360205260009081526040902080546001820154600283015460058401546006850180546001600160a01b03958616969490951694929360ff909216926102ca90611242565b80601f01602080910402602001604051908101604052809291908181526020018280546102f690611242565b80156103435780601f1061031857610100808354040283529160200191610343565b820191906000526020600020905b81548152906001019060200180831161032657829003601f168201915b5050505050905085565b6000546001600160a01b031633146103ac5760405162461bcd60e51b815260206004820152601760248201527f43616c6c6572206973206e6f7420746865206f776e657200000000000000000060448201526064015b60405180910390fd5b60408051610140810182528b815260208082019b8c528183019a8b526001600160801b03998a1660608301908152988a1660808301908152978a1660a08301908152968a1660c08301908152958a1660e08301908152948a166101008301908152938a16610120830190815260009d8e5260069182905292909c2090518155995160018b0155975160028a015594519351938616600160801b94871685021760038901559151905190851690851683021760048701555191519183169183160217600584015590519190920180546fffffffffffffffffffffffffffffffff191691909216179055565b600082815260036020526040902060018101546001600160a01b0316331461050e5760405162461bcd60e51b815260206004820152602560248201527f4f6e6c7920746865206f70706f6e656e742063616e20616363657074207468656044820152642067616d6560d81b60648201526084016103a3565b6002810154600154604051636eb1769f60e11b81523360048201523060248201526001600160a01b039091169063dd62ed3e90604401602060405180830381865afa158015610561573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610585919061127c565b10156105d35760405162461bcd60e51b815260206004820181905260248201527f496e73756666696369656e7420616c6c6f77616e636520666f7220776167657260448201526064016103a3565b60015460028201546040516323b872dd60e01b815233600482015230602482015260448101919091526001600160a01b03909116906323b872dd906064016020604051808303816000875af1158015610630573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906106549190611295565b50815161066a9060048301906020850190610ef1565b50600281015460405133917fc12989f4ffb898af45d9bec31ea6e4b22af6acc72ca98399ca9a866e72c954f8916106a991878252602082015260400190565b60405180910390a2505050565b600154604051636eb1769f60e11b815233600482015230602482015283916001600160a01b03169063dd62ed3e90604401602060405180830381865afa158015610704573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610728919061127c565b10156107765760405162461bcd60e51b815260206004820181905260248201527f496e73756666696369656e7420616c6c6f77616e636520666f7220776167657260448201526064016103a3565b6001546040516323b872dd60e01b8152336004820152306024820152604481018490526001600160a01b03909116906323b872dd906064016020604051808303816000875af11580156107cd573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906107f19190611295565b506000600560008154610803906112d4565b91829055506040805160e0810182523381526001600160a01b038716602082015290810185905290915060608101600060405190808252806020026020018201604052801561085c578160200160208202803683370190505b508152602001600060405190808252806020026020018201604052801561088d578160200160208202803683370190505b5081526000602080830182905260408051808301825283815293810193909352848252600380825291839020845181546001600160a01b039182166001600160a01b0319918216178355868401516001840180549190931691161790559284015160028401556060840151805161090b938501929190910190610ef1565b5060808201518051610927916004840191602090910190610ef1565b5060a082015160058201805460ff191691151591909117905560c08201516006820190610954908261133b565b5050506000818152600260209081526040909120835161097692850190610ef1565b5060408051828152602081018590526001600160a01b0386169133917f92ed5225f997614241753c97f8dff081ab07610d11f06f0c031e4421679af13f910160405180910390a350505050565b600081815260036020526040902080546001600160a01b03163314610a3d5760405162461bcd60e51b815260206004820152602a60248201527f4f6e6c7920746865206368616c6c656e6765722063616e2072657665616c20746044820152696865206f7574636f6d6560b01b60648201526084016103a3565b600581015460ff1615610a925760405162461bcd60e51b815260206004820152601c60248201527f5468652067616d6520697320616c72656164792066696e69736865640000000060448201526064016103a3565b60008281526002602052604090208054610ab0916003840191610f3c565b506000610abc82610b75565b600084815260046020908152604091829020835181558184015160018201559183015180519394508493610af69260028501920190610ef1565b5060608201518051610b12916003840191602090910190610ef1565b50505060058201805460ff191660011790556000610b308383610c1d565b9050610b3c8382610c6b565b6040518481527f6543ec12c6e53f26532beb5289ef5732dcd77c2e9e9921ae42b695905f5e84c09060200160405180910390a150505050565b610ba06040518060800160405280600081526020016000815260200160608152602001606081525090565b6040805160808101825260018152600260208201529081016000604051908082528060200260200182016040528015610be3578160200160208202803683370190505b5081526020016000604051908082528060200260200182016040528015610c14578160200160208202803683370190505b50905292915050565b6000816020015182600001511115610c40575081546001600160a01b0316610c65565b602082015182511015610c61575060018201546001600160a01b0316610c65565b5060005b92915050565b6001600160a01b038116610e14576001548254600284015460405163a9059cbb60e01b81526001600160a01b039283166004820152602481019190915291169063a9059cbb906044016020604051808303816000875af1158015610cd3573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610cf79190611295565b610d435760405162461bcd60e51b815260206004820152601b60248201527f526566756e6420746f206368616c6c656e676572206661696c6564000000000060448201526064016103a3565b6001805490830154600284015460405163a9059cbb60e01b81526001600160a01b039283166004820152602481019190915291169063a9059cbb906044016020604051808303816000875af1158015610da0573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610dc49190611295565b610e105760405162461bcd60e51b815260206004820152601960248201527f526566756e6420746f206f70706f6e656e74206661696c65640000000000000060448201526064016103a3565b5050565b600082600201546002610e2791906113fb565b60015460405163a9059cbb60e01b81526001600160a01b0385811660048301526024820184905292935091169063a9059cbb906044016020604051808303816000875af1158015610e7c573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610ea09190611295565b610eec5760405162461bcd60e51b815260206004820152601960248201527f5472616e7366657220746f2077696e6e6572206661696c65640000000000000060448201526064016103a3565b505050565b828054828255906000526020600020908101928215610f2c579160200282015b82811115610f2c578251825591602001919060010190610f11565b50610f38929150610f7c565b5090565b828054828255906000526020600020908101928215610f2c5760005260206000209182015b82811115610f2c578254825591600101919060010190610f61565b5b80821115610f385760008155600101610f7d565b600060208284031215610fa357600080fd5b5035919050565b600060018060a01b038088168352602081881681850152866040850152851515606085015260a06080850152845191508160a085015260005b82811015610fff5785810182015185820160c001528101610fe3565b5050600060c0828501015260c0601f19601f8301168401019150509695505050505050565b80356001600160801b038116811461103b57600080fd5b919050565b6000806000806000806000806000806101408b8d03121561106057600080fd5b8a35995060208b0135985060408b0135975061107e60608c01611024565b965061108c60808c01611024565b955061109a60a08c01611024565b94506110a860c08c01611024565b93506110b660e08c01611024565b92506110c56101008c01611024565b91506110d46101208c01611024565b90509295989b9194979a5092959850565b634e487b7160e01b600052604160045260246000fd5b600082601f83011261110c57600080fd5b8135602067ffffffffffffffff80831115611129576111296110e5565b8260051b604051601f19603f8301168101818110848211171561114e5761114e6110e5565b60405293845285810183019383810192508785111561116c57600080fd5b83870191505b8482101561118b57813583529183019190830190611172565b979650505050505050565b600080604083850312156111a957600080fd5b82359150602083013567ffffffffffffffff8111156111c757600080fd5b6111d3858286016110fb565b9150509250929050565b6000806000606084860312156111f257600080fd5b83356001600160a01b038116811461120957600080fd5b925060208401359150604084013567ffffffffffffffff81111561122c57600080fd5b611238868287016110fb565b9150509250925092565b600181811c9082168061125657607f821691505b60208210810361127657634e487b7160e01b600052602260045260246000fd5b50919050565b60006020828403121561128e57600080fd5b5051919050565b6000602082840312156112a757600080fd5b815180151581146112b757600080fd5b9392505050565b634e487b7160e01b600052601160045260246000fd5b6000600182016112e6576112e66112be565b5060010190565b601f821115610eec57600081815260208120601f850160051c810160208610156113145750805b601f850160051c820191505b8181101561133357828155600101611320565b505050505050565b815167ffffffffffffffff811115611355576113556110e5565b611369816113638454611242565b846112ed565b602080601f83116001811461139e57600084156113865750858301515b600019600386901b1c1916600185901b178555611333565b600085815260208120601f198616915b828110156113cd578886015182559484019460019091019084016113ae565b50858210156113eb5787850151600019600388901b60f8161c191681555b5050505050600190811b01905550565b8082028115828204841417610c6557610c656112be56fea2646970667358221220272b746497f36ec85ae4ae4fea9c559c14b6a033fe10d9fa04a506c82ee42a3664736f6c63430008110033",
+  "numDeployments": 2,
+  "solcInputHash": "194a32c4c2d1c4bbe9474f677b0c342d",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.17+commit.8df45f5f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"_footballCoin\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_timelockBlocks\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"gameId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"opponent\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"wagerAmount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"blockNumber\",\"type\":\"uint256\"}],\"name\":\"GameAccepted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"gameId\",\"type\":\"uint256\"}],\"name\":\"GameFinished\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"gameId\",\"type\":\"uint256\"}],\"name\":\"GameFinishedByTimelock\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"gameId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"challenger\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"opponent\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"wagerAmount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"blockNumber\",\"type\":\"uint256\"}],\"name\":\"GameProposed\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"gameId\",\"type\":\"uint256\"},{\"internalType\":\"uint256[]\",\"name\":\"formation\",\"type\":\"uint256[]\"}],\"name\":\"acceptGame\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"playerId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"teamId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"position\",\"type\":\"uint256\"},{\"internalType\":\"uint128\",\"name\":\"attack\",\"type\":\"uint128\"},{\"internalType\":\"uint128\",\"name\":\"defense\",\"type\":\"uint128\"},{\"internalType\":\"uint128\",\"name\":\"speed\",\"type\":\"uint128\"},{\"internalType\":\"uint128\",\"name\":\"power\",\"type\":\"uint128\"},{\"internalType\":\"uint128\",\"name\":\"stamina\",\"type\":\"uint128\"},{\"internalType\":\"uint128\",\"name\":\"technique\",\"type\":\"uint128\"},{\"internalType\":\"uint128\",\"name\":\"goalkeeping\",\"type\":\"uint128\"}],\"name\":\"addPlayer\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"numberOfValues\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"prevRandao\",\"type\":\"bytes32\"}],\"name\":\"extractRandomValues\",\"outputs\":[{\"internalType\":\"uint256[]\",\"name\":\"\",\"type\":\"uint256[]\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"footballCoin\",\"outputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"gameCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"gameResults\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"goalsHomeTeam\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"goalsAwayTeam\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"games\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"challenger\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"opponent\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"wagerAmount\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"isFinished\",\"type\":\"bool\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"goalsHomeTeam\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"goalsAwayTeam\",\"type\":\"uint256\"}],\"internalType\":\"struct FootballGame.GameResult\",\"name\":\"result\",\"type\":\"tuple\"},{\"internalType\":\"uint256\",\"name\":\"blockNumber\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getGameCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"gameId\",\"type\":\"uint256\"}],\"name\":\"getGameResult\",\"outputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"goalsHomeTeam\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"goalsAwayTeam\",\"type\":\"uint256\"}],\"internalType\":\"struct FootballGame.GameResult\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"gameId\",\"type\":\"uint256\"}],\"name\":\"opponentClaimTimelock\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"players\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"player_id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"team_id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"position\",\"type\":\"uint256\"},{\"internalType\":\"uint128\",\"name\":\"attack\",\"type\":\"uint128\"},{\"internalType\":\"uint128\",\"name\":\"defense\",\"type\":\"uint128\"},{\"internalType\":\"uint128\",\"name\":\"speed\",\"type\":\"uint128\"},{\"internalType\":\"uint128\",\"name\":\"power\",\"type\":\"uint128\"},{\"internalType\":\"uint128\",\"name\":\"stamina\",\"type\":\"uint128\"},{\"internalType\":\"uint128\",\"name\":\"technique\",\"type\":\"uint128\"},{\"internalType\":\"uint128\",\"name\":\"goalkeeping\",\"type\":\"uint128\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"opponent\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"wagerAmount\",\"type\":\"uint256\"},{\"internalType\":\"uint256[]\",\"name\":\"formation\",\"type\":\"uint256[]\"}],\"name\":\"proposeGame\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"gameId\",\"type\":\"uint256\"}],\"name\":\"revealOutcome\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"timelockBlocks\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/FootballGame.sol\":\"FootballGame\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v4.9.0) (token/ERC20/IERC20.sol)\\n\\npragma solidity ^0.8.0;\\n\\n/**\\n * @dev Interface of the ERC20 standard as defined in the EIP.\\n */\\ninterface IERC20 {\\n    /**\\n     * @dev Emitted when `value` tokens are moved from one account (`from`) to\\n     * another (`to`).\\n     *\\n     * Note that `value` may be zero.\\n     */\\n    event Transfer(address indexed from, address indexed to, uint256 value);\\n\\n    /**\\n     * @dev Emitted when the allowance of a `spender` for an `owner` is set by\\n     * a call to {approve}. `value` is the new allowance.\\n     */\\n    event Approval(address indexed owner, address indexed spender, uint256 value);\\n\\n    /**\\n     * @dev Returns the amount of tokens in existence.\\n     */\\n    function totalSupply() external view returns (uint256);\\n\\n    /**\\n     * @dev Returns the amount of tokens owned by `account`.\\n     */\\n    function balanceOf(address account) external view returns (uint256);\\n\\n    /**\\n     * @dev Moves `amount` tokens from the caller's account to `to`.\\n     *\\n     * Returns a boolean value indicating whether the operation succeeded.\\n     *\\n     * Emits a {Transfer} event.\\n     */\\n    function transfer(address to, uint256 amount) external returns (bool);\\n\\n    /**\\n     * @dev Returns the remaining number of tokens that `spender` will be\\n     * allowed to spend on behalf of `owner` through {transferFrom}. This is\\n     * zero by default.\\n     *\\n     * This value changes when {approve} or {transferFrom} are called.\\n     */\\n    function allowance(address owner, address spender) external view returns (uint256);\\n\\n    /**\\n     * @dev Sets `amount` as the allowance of `spender` over the caller's tokens.\\n     *\\n     * Returns a boolean value indicating whether the operation succeeded.\\n     *\\n     * IMPORTANT: Beware that changing an allowance with this method brings the risk\\n     * that someone may use both the old and the new allowance by unfortunate\\n     * transaction ordering. One possible solution to mitigate this race\\n     * condition is to first reduce the spender's allowance to 0 and set the\\n     * desired value afterwards:\\n     * https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729\\n     *\\n     * Emits an {Approval} event.\\n     */\\n    function approve(address spender, uint256 amount) external returns (bool);\\n\\n    /**\\n     * @dev Moves `amount` tokens from `from` to `to` using the\\n     * allowance mechanism. `amount` is then deducted from the caller's\\n     * allowance.\\n     *\\n     * Returns a boolean value indicating whether the operation succeeded.\\n     *\\n     * Emits a {Transfer} event.\\n     */\\n    function transferFrom(address from, address to, uint256 amount) external returns (bool);\\n}\\n\",\"keccak256\":\"0x287b55befed2961a7eabd7d7b1b2839cbca8a5b80ef8dcbb25ed3d4c2002c305\",\"license\":\"MIT\"},\"contracts/FootballGame.sol\":{\"content\":\"//SPDX-License-Identifier: MIT\\npragma solidity >=0.8.0 <0.9.0;\\nimport \\\"@openzeppelin/contracts/token/ERC20/IERC20.sol\\\";\\n\\ncontract FootballGame {\\n\\taddress public owner;\\n\\tIERC20 public footballCoin;\\n\\tuint public timelockBlocks;\\n\\n\\tstruct Game {\\n\\t\\taddress challenger;\\n\\t\\taddress opponent;\\n\\t\\tuint256 wagerAmount;\\n\\t\\tuint256[] challengerFormation;\\n\\t\\tuint256[] opponentFormation;\\n\\t\\tbool isFinished;\\n\\t\\tGameResult result;\\n\\t\\tuint blockNumber;\\n\\t}\\n\\n\\tstruct GameResult {\\n\\t\\tuint goalsHomeTeam;\\n\\t\\tuint goalsAwayTeam;\\n\\t}\\n\\n\\t///////////////\\n\\t// MAPPINGS  //\\n\\t///////////////\\n\\n\\tmapping(uint256 => uint256[]) private challenger_formation;\\n\\tmapping(uint256 => Game) public games;\\n\\tmapping(uint256 => GameResult) public gameResults;\\n\\tuint256 public gameCount;\\n\\n\\tfunction getGameResult(\\n\\t\\tuint256 gameId\\n\\t) public view returns (GameResult memory) {\\n\\t\\treturn gameResults[gameId];\\n\\t}\\n\\n\\tfunction getGameCount() public view returns (uint256) {\\n\\t\\treturn gameCount;\\n\\t}\\n\\n\\t///////////////\\n\\t// EVENTS  //\\n\\t///////////////\\n\\n\\tevent GameProposed(\\n\\t\\tuint256 gameId,\\n\\t\\taddress indexed challenger,\\n\\t\\taddress indexed opponent,\\n\\t\\tuint256 wagerAmount,\\n\\t\\tuint blockNumber\\n\\t);\\n\\n\\tevent GameAccepted(\\n\\t\\tuint256 gameId,\\n\\t\\taddress indexed opponent,\\n\\t\\tuint256 wagerAmount,\\n\\t\\tuint blockNumber\\n\\t);\\n\\n\\tevent GameFinished(uint256 gameId);\\n\\n\\tevent GameFinishedByTimelock(uint256 gameId);\\n\\n\\t///////////////\\n\\t// PLAYERS   //\\n\\t///////////////\\n\\n\\tstruct Player {\\n\\t\\tuint256 player_id;\\n\\t\\tuint256 team_id;\\n\\t\\tuint256 position; // 0 = Empty, 1 = Goalkeeper, 2 = Defense, 3 = Midfield, 4 = Attack\\n\\t\\tuint128 attack;\\n\\t\\tuint128 defense;\\n\\t\\tuint128 speed;\\n\\t\\tuint128 power;\\n\\t\\tuint128 stamina;\\n\\t\\tuint128 technique;\\n\\t\\tuint128 goalkeeping;\\n\\t}\\n\\n\\tmapping(uint256 => Player) public players;\\n\\n\\tfunction addPlayer(\\n\\t\\tuint256 playerId,\\n\\t\\tuint256 teamId,\\n\\t\\tuint256 position,\\n\\t\\tuint128 attack,\\n\\t\\tuint128 defense,\\n\\t\\tuint128 speed,\\n\\t\\tuint128 power,\\n\\t\\tuint128 stamina,\\n\\t\\tuint128 technique,\\n\\t\\tuint128 goalkeeping\\n\\t) public onlyOwner {\\n\\t\\tPlayer memory newPlayer = Player({\\n\\t\\t\\tplayer_id: playerId,\\n\\t\\t\\tteam_id: teamId,\\n\\t\\t\\tposition: position,\\n\\t\\t\\tattack: attack,\\n\\t\\t\\tdefense: defense,\\n\\t\\t\\tspeed: speed,\\n\\t\\t\\tpower: power,\\n\\t\\t\\tstamina: stamina,\\n\\t\\t\\ttechnique: technique,\\n\\t\\t\\tgoalkeeping: goalkeeping\\n\\t\\t});\\n\\n\\t\\tplayers[playerId] = newPlayer;\\n\\t}\\n\\n\\t///////////////\\n\\t// CONSTRUCTOR  //\\n\\t///////////////\\n\\n\\tconstructor(IERC20 _footballCoin, uint _timelockBlocks) {\\n\\t\\towner = msg.sender;\\n\\t\\tfootballCoin = _footballCoin;\\n\\t\\ttimelockBlocks = _timelockBlocks;\\n\\t}\\n\\tmodifier onlyOwner() {\\n\\t\\trequire(msg.sender == owner, \\\"Caller is not the owner\\\");\\n\\t\\t_;\\n\\t}\\n\\n\\t///////////////\\n\\t// GAME FUNCTIONS  //\\n\\t///////////////\\n\\n\\tfunction proposeGame(\\n\\t\\taddress opponent,\\n\\t\\tuint256 wagerAmount,\\n\\t\\tuint256[] memory formation\\n\\t) public {\\n\\t\\trequire(\\n\\t\\t\\tfootballCoin.allowance(msg.sender, address(this)) >= wagerAmount,\\n\\t\\t\\t\\\"Insufficient allowance for wager\\\"\\n\\t\\t);\\n\\t\\tfor (uint i = 0; i < formation.length; i++) {\\n\\t\\t\\trequire(players[formation[i]].player_id != 0, \\\"Invalid player id\\\");\\n\\t\\t}\\n\\n\\t\\t// Transfer the wager amount from the challenger to the contract\\n\\t\\tfootballCoin.transferFrom(msg.sender, address(this), wagerAmount);\\n\\n\\t\\tuint256 newGameId = ++gameCount;\\n\\t\\tgames[newGameId] = Game({\\n\\t\\t\\tchallenger: msg.sender,\\n\\t\\t\\topponent: opponent,\\n\\t\\t\\twagerAmount: wagerAmount,\\n\\t\\t\\tchallengerFormation: new uint256[](0),\\n\\t\\t\\topponentFormation: new uint256[](0),\\n\\t\\t\\tisFinished: false,\\n\\t\\t\\tresult: GameResult({ goalsHomeTeam: 0, goalsAwayTeam: 0 }),\\n\\t\\t\\tblockNumber: block.number\\n\\t\\t});\\n\\n\\t\\tchallenger_formation[newGameId] = formation;\\n\\n\\t\\t// Emitting events to notify about the new game proposal\\n\\t\\temit GameProposed(\\n\\t\\t\\tnewGameId,\\n\\t\\t\\tmsg.sender,\\n\\t\\t\\topponent,\\n\\t\\t\\twagerAmount,\\n\\t\\t\\tblock.number\\n\\t\\t);\\n\\t}\\n\\n\\tfunction acceptGame(uint256 gameId, uint256[] memory formation) public {\\n\\t\\tGame storage game = games[gameId];\\n\\n\\t\\trequire(\\n\\t\\t\\tmsg.sender == game.opponent,\\n\\t\\t\\t\\\"Only the opponent can accept the game\\\"\\n\\t\\t);\\n\\t\\trequire(\\n\\t\\t\\tfootballCoin.allowance(msg.sender, address(this)) >=\\n\\t\\t\\t\\tgame.wagerAmount,\\n\\t\\t\\t\\\"Insufficient allowance for wager\\\"\\n\\t\\t);\\n\\t\\tfor (uint i = 0; i < formation.length; i++) {\\n\\t\\t\\trequire(players[formation[i]].player_id != 0, \\\"Invalid player id\\\");\\n\\t\\t}\\n\\n\\t\\t// Transfer the wager amount from the opponent to the contract\\n\\t\\tfootballCoin.transferFrom(msg.sender, address(this), game.wagerAmount);\\n\\n\\t\\tgame.opponentFormation = formation;\\n\\t\\tgame.blockNumber = block.number;\\n\\n\\t\\t// Notify about game acceptance\\n\\t\\temit GameAccepted(gameId, msg.sender, game.wagerAmount, block.number);\\n\\t}\\n\\n\\tfunction revealOutcome(uint256 gameId) public {\\n\\t\\tGame storage game = games[gameId];\\n\\n\\t\\trequire(\\n\\t\\t\\tmsg.sender == game.challenger,\\n\\t\\t\\t\\\"Only the challenger can reveal the outcome\\\"\\n\\t\\t);\\n\\t\\trequire(!game.isFinished, \\\"The game is already finished\\\");\\n\\n\\t\\tgame.challengerFormation = challenger_formation[gameId];\\n\\n\\t\\tGameResult memory result = determineGameResult(game);\\n\\t\\tgameResults[gameId] = result;\\n\\n\\t\\tgame.isFinished = true;\\n\\n\\t\\taddress winner = determineWinner(game, result);\\n\\t\\t// payoutWinners(game, winner);\\n\\n\\t\\temit GameFinished(gameId);\\n\\t}\\n\\n\\tfunction opponentClaimTimelock(uint256 gameId) public {\\n\\t\\tGame storage game = games[gameId];\\n\\n\\t\\trequire(\\n\\t\\t\\tmsg.sender == game.opponent,\\n\\t\\t\\t\\\"Only the opponent can claim the timelock\\\"\\n\\t\\t);\\n\\t\\trequire(\\n\\t\\t\\tblock.number > game.blockNumber + timelockBlocks,\\n\\t\\t\\t\\\"Opponent can claim timelock only after timelockBlocks have passed\\\"\\n\\t\\t);\\n\\n\\t\\tgame.isFinished = true;\\n\\t\\tpayoutWinners(game, game.opponent);\\n\\n\\t\\temit GameFinishedByTimelock(gameId);\\n\\t}\\n\\n\\t///////////////\\n\\t// HELPER FUNCTIONS  //\\n\\t///////////////\\n\\n\\tfunction determineGameResult(\\n\\t\\tGame storage game\\n\\t) private view returns (GameResult memory) {\\n\\t\\tGameResult memory result = GameResult({\\n\\t\\t\\tgoalsHomeTeam: 0,\\n\\t\\t\\tgoalsAwayTeam: 0\\n\\t\\t});\\n\\n\\t\\t// Player memory homeGoalkeeper = players[game.challengerFormation[1]];\\n\\t\\t// Player memory awayGoalkeeper = players[game.opponentFormation[1]];\\n\\t\\tbytes32 prevRandao = blockhash(block.number - 1);\\n\\t\\tuint256[] memory randomValues = extractRandomValues(10, prevRandao);\\n\\t\\tfor (uint i = 1; i < game.challengerFormation.length; i++) {\\n\\t\\t\\tPlayer memory homePlayer = players[game.challengerFormation[i]];\\n\\t\\t\\tPlayer memory awayPlayer = players[\\n\\t\\t\\t\\tgame.opponentFormation[game.challengerFormation.length - i]\\n\\t\\t\\t];\\n\\t\\t\\tuint256 totalspeed = homePlayer.speed + awayPlayer.speed;\\n\\t\\t\\tuint256 randomSpeed = uint256(prevRandao) % totalspeed;\\n\\t\\t\\tif (homePlayer.speed > randomSpeed) {\\n\\t\\t\\t\\t// Home player attacks\\n\\t\\t\\t\\tif (homePlayer.attack > randomValues[i - 1]) {\\n\\t\\t\\t\\t\\tresult.goalsHomeTeam++;\\n\\t\\t\\t\\t}\\n\\t\\t\\t} else {\\n\\t\\t\\t\\tif (awayPlayer.attack > randomValues[i - 1]) {\\n\\t\\t\\t\\t\\tresult.goalsAwayTeam++;\\n\\t\\t\\t\\t}\\n\\t\\t\\t}\\n\\t\\t}\\n\\n\\t\\treturn result;\\n\\t}\\n\\n\\tfunction extractRandomValues(\\n\\t\\tuint numberOfValues,\\n\\t\\tbytes32 prevRandao\\n\\t) public pure returns (uint[] memory) {\\n\\t\\trequire(numberOfValues > 0, \\\"Number of values must be greater than 0\\\");\\n\\t\\tuint[] memory randomValues = new uint[](numberOfValues);\\n\\t\\tuint256 randValue = uint256(prevRandao);\\n\\n\\t\\tfor (uint i = 0; i < numberOfValues; i++) {\\n\\t\\t\\trandomValues[i] = randValue % 100;\\n\\t\\t\\trandValue = randValue / 256; // Shift right by 2 hex digits\\n\\t\\t}\\n\\n\\t\\treturn randomValues;\\n\\t}\\n\\n\\tfunction determineWinner(\\n\\t\\tGame storage game,\\n\\t\\tGameResult memory result\\n\\t) private view returns (address) {\\n\\t\\tif (result.goalsHomeTeam > result.goalsAwayTeam) {\\n\\t\\t\\treturn game.challenger;\\n\\t\\t} else if (result.goalsHomeTeam < result.goalsAwayTeam) {\\n\\t\\t\\treturn game.opponent;\\n\\t\\t}\\n\\t\\treturn address(0); // It's a draw\\n\\t}\\n\\n\\tfunction payoutWinners(Game storage game, address winner) private {\\n\\t\\tif (winner == address(0)) {\\n\\t\\t\\trequire(\\n\\t\\t\\t\\tfootballCoin.transfer(game.challenger, game.wagerAmount),\\n\\t\\t\\t\\t\\\"Refund to challenger failed\\\"\\n\\t\\t\\t);\\n\\t\\t\\trequire(\\n\\t\\t\\t\\tfootballCoin.transfer(game.opponent, game.wagerAmount),\\n\\t\\t\\t\\t\\\"Refund to opponent failed\\\"\\n\\t\\t\\t);\\n\\t\\t} else {\\n\\t\\t\\tuint256 totalPot = game.wagerAmount * 2;\\n\\t\\t\\trequire(\\n\\t\\t\\t\\tfootballCoin.transfer(winner, totalPot),\\n\\t\\t\\t\\t\\\"Transfer to winner failed\\\"\\n\\t\\t\\t);\\n\\t\\t}\\n\\t}\\n}\\n\",\"keccak256\":\"0xb444bb0755d060db164b889ab027654868658c5be357f666ac366fbb756cf02d\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50604051611ae6380380611ae683398101604081905261002f91610066565b60008054336001600160a01b031991821617909155600180549091166001600160a01b0393909316929092179091556002556100a0565b6000806040838503121561007957600080fd5b82516001600160a01b038116811461009057600080fd5b6020939093015192949293505050565b611a37806100af6000396000f3fe608060405234801561001057600080fd5b50600436106100f55760003560e01c806394b1e59511610097578063ed2df26d11610066578063ed2df26d1461025d578063f71d96cb146102b6578063fda0f9a214610386578063fdba1b7c1461038f57600080fd5b806394b1e5951461021c578063cd86f8101461022f578063cfb9479814610242578063e87c0ee61461025557600080fd5b806352bab1c9116100d357806352bab1c9146101ab57806359c892a9146101cb57806364407bad146101de5780638da5cb5b1461020957600080fd5b8063117a5b90146100fa5780634d1975b41461017f578063506d7e2d14610196575b600080fd5b6101646101083660046115d5565b60046020908152600091825260409182902080546001820154600283015460058401548651808801909752600685015487526007850154958701959095526008909301546001600160a01b0392831695919092169360ff169186565b604051610176969594939291906115ee565b60405180910390f35b61018860065481565b604051908152602001610176565b6101a96101a4366004611659565b6103cb565b005b6101be6101b93660046116fe565b61051b565b6040516101769190611720565b6101a96101d9366004611815565b610624565b6001546101f1906001600160a01b031681565b6040516001600160a01b039091168152602001610176565b6000546101f1906001600160a01b031681565b6101a961022a3660046115d5565b6108e1565b6101a961023d36600461185c565b610a4c565b6101a96102503660046115d5565b610e05565b600654610188565b6102a961026b3660046115d5565b604080518082019091526000808252602082015250600090815260056020908152604091829020825180840190935280548352600101549082015290565b60405161017691906118c1565b6103296102c43660046115d5565b60076020526000908152604090208054600182015460028301546003840154600485015460058601546006909601549495939492936001600160801b0380841694600160801b948590048216948483169481900483169380841693919004811691168a565b604080519a8b5260208b0199909952978901969096526001600160801b039485166060890152928416608088015290831660a0870152821660c0860152811660e08501529081166101008401521661012082015261014001610176565b61018860025481565b6103b661039d3660046115d5565b6005602052600090815260409020805460019091015482565b60408051928352602083019190915201610176565b6000546001600160a01b0316331461042a5760405162461bcd60e51b815260206004820152601760248201527f43616c6c6572206973206e6f7420746865206f776e657200000000000000000060448201526064015b60405180910390fd5b60408051610140810182528b815260208082019b8c528183019a8b526001600160801b03998a1660608301908152988a1660808301908152978a1660a08301908152968a1660c08301908152958a1660e08301908152948a166101008301908152938a16610120830190815260009d8e52600790915291909b209a518b55985160018b0155965160028a015593519251928516600160801b938616840217600389015590519051908416908416820217600487015590519251928216928216029190911760058401559051600690920180546fffffffffffffffffffffffffffffffff191692909116919091179055565b60606000831161057d5760405162461bcd60e51b815260206004820152602760248201527f4e756d626572206f662076616c756573206d75737420626520677265617465726044820152660207468616e20360cc1b6064820152608401610421565b60008367ffffffffffffffff81111561059857610598611764565b6040519080825280602002602001820160405280156105c1578160200160208202803683370190505b5090508260005b85811015610618576105db6064836118ee565b8382815181106105ed576105ed611902565b60209081029190910101526106046101008361192e565b91508061061081611942565b9150506105c8565b50909150505b92915050565b600082815260046020526040902060018101546001600160a01b0316331461069c5760405162461bcd60e51b815260206004820152602560248201527f4f6e6c7920746865206f70706f6e656e742063616e20616363657074207468656044820152642067616d6560d81b6064820152608401610421565b6002810154600154604051636eb1769f60e11b81523360048201523060248201526001600160a01b039091169063dd62ed3e90604401602060405180830381865afa1580156106ef573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610713919061195b565b10156107615760405162461bcd60e51b815260206004820181905260248201527f496e73756666696369656e7420616c6c6f77616e636520666f722077616765726044820152606401610421565b60005b82518110156107f2576007600084838151811061078357610783611902565b60200260200101518152602001908152602001600020600001546000036107e05760405162461bcd60e51b8152602060048201526011602482015270125b9d985b1a59081c1b185e595c881a59607a1b6044820152606401610421565b806107ea81611942565b915050610764565b5060015460028201546040516323b872dd60e01b815233600482015230602482015260448101919091526001600160a01b03909116906323b872dd906064016020604051808303816000875af1158015610850573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906108749190611974565b50815161088a9060048301906020850190611535565b504360088201819055600282015460408051868152602081019290925281019190915233907f3e4861c2ee824ef513d4f257f8e91ed935561ba29a3a66edaf6106956b1a33409060600160405180910390a2505050565b600081815260046020526040902060018101546001600160a01b0316331461095c5760405162461bcd60e51b815260206004820152602860248201527f4f6e6c7920746865206f70706f6e656e742063616e20636c61696d207468652060448201526774696d656c6f636b60c01b6064820152608401610421565b600254816008015461096e919061199d565b43116109ec5760405162461bcd60e51b815260206004820152604160248201527f4f70706f6e656e742063616e20636c61696d2074696d656c6f636b206f6e6c7960448201527f2061667465722074696d656c6f636b426c6f636b7320686176652070617373656064820152601960fa1b608482015260a401610421565b60058101805460ff19166001908117909155810154610a159082906001600160a01b0316610f7a565b6040518281527f3940a261f19a11e745a180d85bc64bb8a1360ea9d291fff0bce0d67cc4261f949060200160405180910390a15050565b600154604051636eb1769f60e11b815233600482015230602482015283916001600160a01b03169063dd62ed3e90604401602060405180830381865afa158015610a9a573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610abe919061195b565b1015610b0c5760405162461bcd60e51b815260206004820181905260248201527f496e73756666696369656e7420616c6c6f77616e636520666f722077616765726044820152606401610421565b60005b8151811015610b9d5760076000838381518110610b2e57610b2e611902565b6020026020010151815260200190815260200160002060000154600003610b8b5760405162461bcd60e51b8152602060048201526011602482015270125b9d985b1a59081c1b185e595c881a59607a1b6044820152606401610421565b80610b9581611942565b915050610b0f565b506001546040516323b872dd60e01b8152336004820152306024820152604481018490526001600160a01b03909116906323b872dd906064016020604051808303816000875af1158015610bf5573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610c199190611974565b506000600660008154610c2b90611942565b918290555060408051610100810182523381526001600160a01b0387166020820152908101859052909150606081016000604051908082528060200260200182016040528015610c85578160200160208202803683370190505b5081526020016000604051908082528060200260200182016040528015610cb6578160200160208202803683370190505b5081526000602080830182905260408051808201825283815280830184905281850152436060948501528583526004825291829020845181546001600160a01b039182166001600160a01b0319918216178355868401516001840180549190931691161790559184015160028301559183015180519192610d3f92600385019290910190611535565b5060808201518051610d5b916004840191602090910190611535565b5060a082015160058201805460ff191691151591909117905560c082015180516006830155602090810151600783015560e090920151600890910155600082815260038252604090208351610db292850190611535565b506040805182815260208101859052438183015290516001600160a01b0386169133917f02c4c4ed29b388428cf1564d10b179c4153a007fb74269c8cc4681465146f50a9181900360600190a350505050565b600081815260046020526040902080546001600160a01b03163314610e7f5760405162461bcd60e51b815260206004820152602a60248201527f4f6e6c7920746865206368616c6c656e6765722063616e2072657665616c20746044820152696865206f7574636f6d6560b01b6064820152608401610421565b600581015460ff1615610ed45760405162461bcd60e51b815260206004820152601c60248201527f5468652067616d6520697320616c72656164792066696e6973686564000000006044820152606401610421565b60008281526003602081905260409091208054610ef49284019190611580565b506000610f0082611200565b600084815260056020818152604083208451815590840151600191820155908501805460ff19169091179055909150610f3983836114e8565b90507f6543ec12c6e53f26532beb5289ef5732dcd77c2e9e9921ae42b695905f5e84c084604051610f6c91815260200190565b60405180910390a150505050565b6001600160a01b038116611123576001548254600284015460405163a9059cbb60e01b81526001600160a01b039283166004820152602481019190915291169063a9059cbb906044016020604051808303816000875af1158015610fe2573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906110069190611974565b6110525760405162461bcd60e51b815260206004820152601b60248201527f526566756e6420746f206368616c6c656e676572206661696c656400000000006044820152606401610421565b6001805490830154600284015460405163a9059cbb60e01b81526001600160a01b039283166004820152602481019190915291169063a9059cbb906044016020604051808303816000875af11580156110af573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906110d39190611974565b61111f5760405162461bcd60e51b815260206004820152601960248201527f526566756e6420746f206f70706f6e656e74206661696c6564000000000000006044820152606401610421565b5050565b60008260020154600261113691906119b0565b60015460405163a9059cbb60e01b81526001600160a01b0385811660048301526024820184905292935091169063a9059cbb906044016020604051808303816000875af115801561118b573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906111af9190611974565b6111fb5760405162461bcd60e51b815260206004820152601960248201527f5472616e7366657220746f2077696e6e6572206661696c6564000000000000006044820152606401610421565b505050565b6040805180820190915260008082526020820152604080518082019091526000808252602082018190526112356001436119c7565b4090506000611245600a8361051b565b905060015b60038601548110156114de5760006007600088600301848154811061127157611271611902565b600091825260208083209091015483528281019390935260409182018120825161014081018452815481526001820154948101949094526002810154928401929092526003808301546001600160801b038082166060870152600160801b918290048116608087015260048086015480831660a0890152839004821660c0880152600586015480831660e08901529290920481166101008701526006909401549093166101208501528a0154929350916007918391908b01906113359087906119c7565b8154811061134557611345611902565b6000918252602080832090910154835282810193909352604091820181208251610140810184528154815260018201549481019490945260028101549284019290925260038201546001600160801b038082166060860152600160801b9182900481166080860152600484015480821660a080880182905291849004831660c0880152600586015480841660e089015293909304821661010087015260069094015416610120850152918501519293509161140091906119da565b6001600160801b03169050600061141782886118ee565b9050808460a001516001600160801b0316111561147b578561143a6001876119c7565b8151811061144a5761144a611902565b602002602001015184606001516001600160801b031611156114765787518861147282611942565b9052505b6114c7565b856114876001876119c7565b8151811061149757611497611902565b602002602001015183606001516001600160801b031611156114c757602088018051906114c382611942565b9052505b5050505080806114d690611942565b91505061124a565b5091949350505050565b600081602001518260000151111561150b575081546001600160a01b031661061e565b60208201518251101561152c575060018201546001600160a01b031661061e565b50600092915050565b828054828255906000526020600020908101928215611570579160200282015b82811115611570578251825591602001919060010190611555565b5061157c9291506115c0565b5090565b8280548282559060005260206000209081019282156115705760005260206000209182015b828111156115705782548255916001019190600101906115a5565b5b8082111561157c57600081556001016115c1565b6000602082840312156115e757600080fd5b5035919050565b6001600160a01b0387811682528616602082015260408101859052831515606082015260e0810161162c608083018580518252602090810151910152565b8260c0830152979650505050505050565b80356001600160801b038116811461165457600080fd5b919050565b6000806000806000806000806000806101408b8d03121561167957600080fd5b8a35995060208b0135985060408b0135975061169760608c0161163d565b96506116a560808c0161163d565b95506116b360a08c0161163d565b94506116c160c08c0161163d565b93506116cf60e08c0161163d565b92506116de6101008c0161163d565b91506116ed6101208c0161163d565b90509295989b9194979a5092959850565b6000806040838503121561171157600080fd5b50508035926020909101359150565b6020808252825182820181905260009190848201906040850190845b818110156117585783518352928401929184019160010161173c565b50909695505050505050565b634e487b7160e01b600052604160045260246000fd5b600082601f83011261178b57600080fd5b8135602067ffffffffffffffff808311156117a8576117a8611764565b8260051b604051601f19603f830116810181811084821117156117cd576117cd611764565b6040529384528581018301938381019250878511156117eb57600080fd5b83870191505b8482101561180a578135835291830191908301906117f1565b979650505050505050565b6000806040838503121561182857600080fd5b82359150602083013567ffffffffffffffff81111561184657600080fd5b6118528582860161177a565b9150509250929050565b60008060006060848603121561187157600080fd5b83356001600160a01b038116811461188857600080fd5b925060208401359150604084013567ffffffffffffffff8111156118ab57600080fd5b6118b78682870161177a565b9150509250925092565b81518152602080830151908201526040810161061e565b634e487b7160e01b600052601260045260246000fd5b6000826118fd576118fd6118d8565b500690565b634e487b7160e01b600052603260045260246000fd5b634e487b7160e01b600052601160045260246000fd5b60008261193d5761193d6118d8565b500490565b60006001820161195457611954611918565b5060010190565b60006020828403121561196d57600080fd5b5051919050565b60006020828403121561198657600080fd5b8151801515811461199657600080fd5b9392505050565b8082018082111561061e5761061e611918565b808202811582820484141761061e5761061e611918565b8181038181111561061e5761061e611918565b6001600160801b038181168382160190808211156119fa576119fa611918565b509291505056fea26469706673582212208c27f28a17c26591e4729a238398e19828a6d7162c2841277a62016189dd844b64736f6c63430008110033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100f55760003560e01c806394b1e59511610097578063ed2df26d11610066578063ed2df26d1461025d578063f71d96cb146102b6578063fda0f9a214610386578063fdba1b7c1461038f57600080fd5b806394b1e5951461021c578063cd86f8101461022f578063cfb9479814610242578063e87c0ee61461025557600080fd5b806352bab1c9116100d357806352bab1c9146101ab57806359c892a9146101cb57806364407bad146101de5780638da5cb5b1461020957600080fd5b8063117a5b90146100fa5780634d1975b41461017f578063506d7e2d14610196575b600080fd5b6101646101083660046115d5565b60046020908152600091825260409182902080546001820154600283015460058401548651808801909752600685015487526007850154958701959095526008909301546001600160a01b0392831695919092169360ff169186565b604051610176969594939291906115ee565b60405180910390f35b61018860065481565b604051908152602001610176565b6101a96101a4366004611659565b6103cb565b005b6101be6101b93660046116fe565b61051b565b6040516101769190611720565b6101a96101d9366004611815565b610624565b6001546101f1906001600160a01b031681565b6040516001600160a01b039091168152602001610176565b6000546101f1906001600160a01b031681565b6101a961022a3660046115d5565b6108e1565b6101a961023d36600461185c565b610a4c565b6101a96102503660046115d5565b610e05565b600654610188565b6102a961026b3660046115d5565b604080518082019091526000808252602082015250600090815260056020908152604091829020825180840190935280548352600101549082015290565b60405161017691906118c1565b6103296102c43660046115d5565b60076020526000908152604090208054600182015460028301546003840154600485015460058601546006909601549495939492936001600160801b0380841694600160801b948590048216948483169481900483169380841693919004811691168a565b604080519a8b5260208b0199909952978901969096526001600160801b039485166060890152928416608088015290831660a0870152821660c0860152811660e08501529081166101008401521661012082015261014001610176565b61018860025481565b6103b661039d3660046115d5565b6005602052600090815260409020805460019091015482565b60408051928352602083019190915201610176565b6000546001600160a01b0316331461042a5760405162461bcd60e51b815260206004820152601760248201527f43616c6c6572206973206e6f7420746865206f776e657200000000000000000060448201526064015b60405180910390fd5b60408051610140810182528b815260208082019b8c528183019a8b526001600160801b03998a1660608301908152988a1660808301908152978a1660a08301908152968a1660c08301908152958a1660e08301908152948a166101008301908152938a16610120830190815260009d8e52600790915291909b209a518b55985160018b0155965160028a015593519251928516600160801b938616840217600389015590519051908416908416820217600487015590519251928216928216029190911760058401559051600690920180546fffffffffffffffffffffffffffffffff191692909116919091179055565b60606000831161057d5760405162461bcd60e51b815260206004820152602760248201527f4e756d626572206f662076616c756573206d75737420626520677265617465726044820152660207468616e20360cc1b6064820152608401610421565b60008367ffffffffffffffff81111561059857610598611764565b6040519080825280602002602001820160405280156105c1578160200160208202803683370190505b5090508260005b85811015610618576105db6064836118ee565b8382815181106105ed576105ed611902565b60209081029190910101526106046101008361192e565b91508061061081611942565b9150506105c8565b50909150505b92915050565b600082815260046020526040902060018101546001600160a01b0316331461069c5760405162461bcd60e51b815260206004820152602560248201527f4f6e6c7920746865206f70706f6e656e742063616e20616363657074207468656044820152642067616d6560d81b6064820152608401610421565b6002810154600154604051636eb1769f60e11b81523360048201523060248201526001600160a01b039091169063dd62ed3e90604401602060405180830381865afa1580156106ef573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610713919061195b565b10156107615760405162461bcd60e51b815260206004820181905260248201527f496e73756666696369656e7420616c6c6f77616e636520666f722077616765726044820152606401610421565b60005b82518110156107f2576007600084838151811061078357610783611902565b60200260200101518152602001908152602001600020600001546000036107e05760405162461bcd60e51b8152602060048201526011602482015270125b9d985b1a59081c1b185e595c881a59607a1b6044820152606401610421565b806107ea81611942565b915050610764565b5060015460028201546040516323b872dd60e01b815233600482015230602482015260448101919091526001600160a01b03909116906323b872dd906064016020604051808303816000875af1158015610850573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906108749190611974565b50815161088a9060048301906020850190611535565b504360088201819055600282015460408051868152602081019290925281019190915233907f3e4861c2ee824ef513d4f257f8e91ed935561ba29a3a66edaf6106956b1a33409060600160405180910390a2505050565b600081815260046020526040902060018101546001600160a01b0316331461095c5760405162461bcd60e51b815260206004820152602860248201527f4f6e6c7920746865206f70706f6e656e742063616e20636c61696d207468652060448201526774696d656c6f636b60c01b6064820152608401610421565b600254816008015461096e919061199d565b43116109ec5760405162461bcd60e51b815260206004820152604160248201527f4f70706f6e656e742063616e20636c61696d2074696d656c6f636b206f6e6c7960448201527f2061667465722074696d656c6f636b426c6f636b7320686176652070617373656064820152601960fa1b608482015260a401610421565b60058101805460ff19166001908117909155810154610a159082906001600160a01b0316610f7a565b6040518281527f3940a261f19a11e745a180d85bc64bb8a1360ea9d291fff0bce0d67cc4261f949060200160405180910390a15050565b600154604051636eb1769f60e11b815233600482015230602482015283916001600160a01b03169063dd62ed3e90604401602060405180830381865afa158015610a9a573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610abe919061195b565b1015610b0c5760405162461bcd60e51b815260206004820181905260248201527f496e73756666696369656e7420616c6c6f77616e636520666f722077616765726044820152606401610421565b60005b8151811015610b9d5760076000838381518110610b2e57610b2e611902565b6020026020010151815260200190815260200160002060000154600003610b8b5760405162461bcd60e51b8152602060048201526011602482015270125b9d985b1a59081c1b185e595c881a59607a1b6044820152606401610421565b80610b9581611942565b915050610b0f565b506001546040516323b872dd60e01b8152336004820152306024820152604481018490526001600160a01b03909116906323b872dd906064016020604051808303816000875af1158015610bf5573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610c199190611974565b506000600660008154610c2b90611942565b918290555060408051610100810182523381526001600160a01b0387166020820152908101859052909150606081016000604051908082528060200260200182016040528015610c85578160200160208202803683370190505b5081526020016000604051908082528060200260200182016040528015610cb6578160200160208202803683370190505b5081526000602080830182905260408051808201825283815280830184905281850152436060948501528583526004825291829020845181546001600160a01b039182166001600160a01b0319918216178355868401516001840180549190931691161790559184015160028301559183015180519192610d3f92600385019290910190611535565b5060808201518051610d5b916004840191602090910190611535565b5060a082015160058201805460ff191691151591909117905560c082015180516006830155602090810151600783015560e090920151600890910155600082815260038252604090208351610db292850190611535565b506040805182815260208101859052438183015290516001600160a01b0386169133917f02c4c4ed29b388428cf1564d10b179c4153a007fb74269c8cc4681465146f50a9181900360600190a350505050565b600081815260046020526040902080546001600160a01b03163314610e7f5760405162461bcd60e51b815260206004820152602a60248201527f4f6e6c7920746865206368616c6c656e6765722063616e2072657665616c20746044820152696865206f7574636f6d6560b01b6064820152608401610421565b600581015460ff1615610ed45760405162461bcd60e51b815260206004820152601c60248201527f5468652067616d6520697320616c72656164792066696e6973686564000000006044820152606401610421565b60008281526003602081905260409091208054610ef49284019190611580565b506000610f0082611200565b600084815260056020818152604083208451815590840151600191820155908501805460ff19169091179055909150610f3983836114e8565b90507f6543ec12c6e53f26532beb5289ef5732dcd77c2e9e9921ae42b695905f5e84c084604051610f6c91815260200190565b60405180910390a150505050565b6001600160a01b038116611123576001548254600284015460405163a9059cbb60e01b81526001600160a01b039283166004820152602481019190915291169063a9059cbb906044016020604051808303816000875af1158015610fe2573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906110069190611974565b6110525760405162461bcd60e51b815260206004820152601b60248201527f526566756e6420746f206368616c6c656e676572206661696c656400000000006044820152606401610421565b6001805490830154600284015460405163a9059cbb60e01b81526001600160a01b039283166004820152602481019190915291169063a9059cbb906044016020604051808303816000875af11580156110af573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906110d39190611974565b61111f5760405162461bcd60e51b815260206004820152601960248201527f526566756e6420746f206f70706f6e656e74206661696c6564000000000000006044820152606401610421565b5050565b60008260020154600261113691906119b0565b60015460405163a9059cbb60e01b81526001600160a01b0385811660048301526024820184905292935091169063a9059cbb906044016020604051808303816000875af115801561118b573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906111af9190611974565b6111fb5760405162461bcd60e51b815260206004820152601960248201527f5472616e7366657220746f2077696e6e6572206661696c6564000000000000006044820152606401610421565b505050565b6040805180820190915260008082526020820152604080518082019091526000808252602082018190526112356001436119c7565b4090506000611245600a8361051b565b905060015b60038601548110156114de5760006007600088600301848154811061127157611271611902565b600091825260208083209091015483528281019390935260409182018120825161014081018452815481526001820154948101949094526002810154928401929092526003808301546001600160801b038082166060870152600160801b918290048116608087015260048086015480831660a0890152839004821660c0880152600586015480831660e08901529290920481166101008701526006909401549093166101208501528a0154929350916007918391908b01906113359087906119c7565b8154811061134557611345611902565b6000918252602080832090910154835282810193909352604091820181208251610140810184528154815260018201549481019490945260028101549284019290925260038201546001600160801b038082166060860152600160801b9182900481166080860152600484015480821660a080880182905291849004831660c0880152600586015480841660e089015293909304821661010087015260069094015416610120850152918501519293509161140091906119da565b6001600160801b03169050600061141782886118ee565b9050808460a001516001600160801b0316111561147b578561143a6001876119c7565b8151811061144a5761144a611902565b602002602001015184606001516001600160801b031611156114765787518861147282611942565b9052505b6114c7565b856114876001876119c7565b8151811061149757611497611902565b602002602001015183606001516001600160801b031611156114c757602088018051906114c382611942565b9052505b5050505080806114d690611942565b91505061124a565b5091949350505050565b600081602001518260000151111561150b575081546001600160a01b031661061e565b60208201518251101561152c575060018201546001600160a01b031661061e565b50600092915050565b828054828255906000526020600020908101928215611570579160200282015b82811115611570578251825591602001919060010190611555565b5061157c9291506115c0565b5090565b8280548282559060005260206000209081019282156115705760005260206000209182015b828111156115705782548255916001019190600101906115a5565b5b8082111561157c57600081556001016115c1565b6000602082840312156115e757600080fd5b5035919050565b6001600160a01b0387811682528616602082015260408101859052831515606082015260e0810161162c608083018580518252602090810151910152565b8260c0830152979650505050505050565b80356001600160801b038116811461165457600080fd5b919050565b6000806000806000806000806000806101408b8d03121561167957600080fd5b8a35995060208b0135985060408b0135975061169760608c0161163d565b96506116a560808c0161163d565b95506116b360a08c0161163d565b94506116c160c08c0161163d565b93506116cf60e08c0161163d565b92506116de6101008c0161163d565b91506116ed6101208c0161163d565b90509295989b9194979a5092959850565b6000806040838503121561171157600080fd5b50508035926020909101359150565b6020808252825182820181905260009190848201906040850190845b818110156117585783518352928401929184019160010161173c565b50909695505050505050565b634e487b7160e01b600052604160045260246000fd5b600082601f83011261178b57600080fd5b8135602067ffffffffffffffff808311156117a8576117a8611764565b8260051b604051601f19603f830116810181811084821117156117cd576117cd611764565b6040529384528581018301938381019250878511156117eb57600080fd5b83870191505b8482101561180a578135835291830191908301906117f1565b979650505050505050565b6000806040838503121561182857600080fd5b82359150602083013567ffffffffffffffff81111561184657600080fd5b6118528582860161177a565b9150509250929050565b60008060006060848603121561187157600080fd5b83356001600160a01b038116811461188857600080fd5b925060208401359150604084013567ffffffffffffffff8111156118ab57600080fd5b6118b78682870161177a565b9150509250925092565b81518152602080830151908201526040810161061e565b634e487b7160e01b600052601260045260246000fd5b6000826118fd576118fd6118d8565b500690565b634e487b7160e01b600052603260045260246000fd5b634e487b7160e01b600052601160045260246000fd5b60008261193d5761193d6118d8565b500490565b60006001820161195457611954611918565b5060010190565b60006020828403121561196d57600080fd5b5051919050565b60006020828403121561198657600080fd5b8151801515811461199657600080fd5b9392505050565b8082018082111561061e5761061e611918565b808202811582820484141761061e5761061e611918565b8181038181111561061e5761061e611918565b6001600160801b038181168382160190808211156119fa576119fa611918565b509291505056fea26469706673582212208c27f28a17c26591e4729a238398e19828a6d7162c2841277a62016189dd844b64736f6c63430008110033",
   "devdoc": {
     "kind": "dev",
     "methods": {},
@@ -413,44 +555,52 @@
         "type": "t_contract(IERC20)77"
       },
       {
-        "astId": 118,
+        "astId": 87,
         "contract": "contracts/FootballGame.sol:FootballGame",
-        "label": "challenger_formation",
+        "label": "timelockBlocks",
         "offset": 0,
         "slot": "2",
-        "type": "t_mapping(t_uint256,t_array(t_uint256)dyn_storage)"
-      },
-      {
-        "astId": 123,
-        "contract": "contracts/FootballGame.sol:FootballGame",
-        "label": "games",
-        "offset": 0,
-        "slot": "3",
-        "type": "t_mapping(t_uint256,t_struct(Game)102_storage)"
-      },
-      {
-        "astId": 128,
-        "contract": "contracts/FootballGame.sol:FootballGame",
-        "label": "gameResults",
-        "offset": 0,
-        "slot": "4",
-        "type": "t_mapping(t_uint256,t_struct(GameResult)113_storage)"
-      },
-      {
-        "astId": 130,
-        "contract": "contracts/FootballGame.sol:FootballGame",
-        "label": "gameCount",
-        "offset": 0,
-        "slot": "5",
         "type": "t_uint256"
       },
       {
-        "astId": 178,
+        "astId": 117,
+        "contract": "contracts/FootballGame.sol:FootballGame",
+        "label": "challenger_formation",
+        "offset": 0,
+        "slot": "3",
+        "type": "t_mapping(t_uint256,t_array(t_uint256)dyn_storage)"
+      },
+      {
+        "astId": 122,
+        "contract": "contracts/FootballGame.sol:FootballGame",
+        "label": "games",
+        "offset": 0,
+        "slot": "4",
+        "type": "t_mapping(t_uint256,t_struct(Game)107_storage)"
+      },
+      {
+        "astId": 127,
+        "contract": "contracts/FootballGame.sol:FootballGame",
+        "label": "gameResults",
+        "offset": 0,
+        "slot": "5",
+        "type": "t_mapping(t_uint256,t_struct(GameResult)112_storage)"
+      },
+      {
+        "astId": 129,
+        "contract": "contracts/FootballGame.sol:FootballGame",
+        "label": "gameCount",
+        "offset": 0,
+        "slot": "6",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 206,
         "contract": "contracts/FootballGame.sol:FootballGame",
         "label": "players",
         "offset": 0,
-        "slot": "6",
-        "type": "t_mapping(t_uint256,t_struct(Player)173_storage)"
+        "slot": "7",
+        "type": "t_mapping(t_uint256,t_struct(Player)201_storage)"
       }
     ],
     "types": {
@@ -482,38 +632,33 @@
         "numberOfBytes": "32",
         "value": "t_array(t_uint256)dyn_storage"
       },
-      "t_mapping(t_uint256,t_struct(Game)102_storage)": {
+      "t_mapping(t_uint256,t_struct(Game)107_storage)": {
         "encoding": "mapping",
         "key": "t_uint256",
         "label": "mapping(uint256 => struct FootballGame.Game)",
         "numberOfBytes": "32",
-        "value": "t_struct(Game)102_storage"
+        "value": "t_struct(Game)107_storage"
       },
-      "t_mapping(t_uint256,t_struct(GameResult)113_storage)": {
+      "t_mapping(t_uint256,t_struct(GameResult)112_storage)": {
         "encoding": "mapping",
         "key": "t_uint256",
         "label": "mapping(uint256 => struct FootballGame.GameResult)",
         "numberOfBytes": "32",
-        "value": "t_struct(GameResult)113_storage"
+        "value": "t_struct(GameResult)112_storage"
       },
-      "t_mapping(t_uint256,t_struct(Player)173_storage)": {
+      "t_mapping(t_uint256,t_struct(Player)201_storage)": {
         "encoding": "mapping",
         "key": "t_uint256",
         "label": "mapping(uint256 => struct FootballGame.Player)",
         "numberOfBytes": "32",
-        "value": "t_struct(Player)173_storage"
+        "value": "t_struct(Player)201_storage"
       },
-      "t_string_storage": {
-        "encoding": "bytes",
-        "label": "string",
-        "numberOfBytes": "32"
-      },
-      "t_struct(Game)102_storage": {
+      "t_struct(Game)107_storage": {
         "encoding": "inplace",
         "label": "struct FootballGame.Game",
         "members": [
           {
-            "astId": 87,
+            "astId": 89,
             "contract": "contracts/FootballGame.sol:FootballGame",
             "label": "challenger",
             "offset": 0,
@@ -521,7 +666,7 @@
             "type": "t_address"
           },
           {
-            "astId": 89,
+            "astId": 91,
             "contract": "contracts/FootballGame.sol:FootballGame",
             "label": "opponent",
             "offset": 0,
@@ -529,7 +674,7 @@
             "type": "t_address"
           },
           {
-            "astId": 91,
+            "astId": 93,
             "contract": "contracts/FootballGame.sol:FootballGame",
             "label": "wagerAmount",
             "offset": 0,
@@ -537,7 +682,7 @@
             "type": "t_uint256"
           },
           {
-            "astId": 94,
+            "astId": 96,
             "contract": "contracts/FootballGame.sol:FootballGame",
             "label": "challengerFormation",
             "offset": 0,
@@ -545,7 +690,7 @@
             "type": "t_array(t_uint256)dyn_storage"
           },
           {
-            "astId": 97,
+            "astId": 99,
             "contract": "contracts/FootballGame.sol:FootballGame",
             "label": "opponentFormation",
             "offset": 0,
@@ -553,7 +698,7 @@
             "type": "t_array(t_uint256)dyn_storage"
           },
           {
-            "astId": 99,
+            "astId": 101,
             "contract": "contracts/FootballGame.sol:FootballGame",
             "label": "isFinished",
             "offset": 0,
@@ -561,22 +706,30 @@
             "type": "t_bool"
           },
           {
-            "astId": 101,
+            "astId": 104,
             "contract": "contracts/FootballGame.sol:FootballGame",
             "label": "result",
             "offset": 0,
             "slot": "6",
-            "type": "t_string_storage"
+            "type": "t_struct(GameResult)112_storage"
+          },
+          {
+            "astId": 106,
+            "contract": "contracts/FootballGame.sol:FootballGame",
+            "label": "blockNumber",
+            "offset": 0,
+            "slot": "8",
+            "type": "t_uint256"
           }
         ],
-        "numberOfBytes": "224"
+        "numberOfBytes": "288"
       },
-      "t_struct(GameResult)113_storage": {
+      "t_struct(GameResult)112_storage": {
         "encoding": "inplace",
         "label": "struct FootballGame.GameResult",
         "members": [
           {
-            "astId": 104,
+            "astId": 109,
             "contract": "contracts/FootballGame.sol:FootballGame",
             "label": "goalsHomeTeam",
             "offset": 0,
@@ -584,38 +737,22 @@
             "type": "t_uint256"
           },
           {
-            "astId": 106,
+            "astId": 111,
             "contract": "contracts/FootballGame.sol:FootballGame",
             "label": "goalsAwayTeam",
             "offset": 0,
             "slot": "1",
             "type": "t_uint256"
-          },
-          {
-            "astId": 109,
-            "contract": "contracts/FootballGame.sol:FootballGame",
-            "label": "goalScorersHome",
-            "offset": 0,
-            "slot": "2",
-            "type": "t_array(t_uint256)dyn_storage"
-          },
-          {
-            "astId": 112,
-            "contract": "contracts/FootballGame.sol:FootballGame",
-            "label": "goalScorersAway",
-            "offset": 0,
-            "slot": "3",
-            "type": "t_array(t_uint256)dyn_storage"
           }
         ],
-        "numberOfBytes": "128"
+        "numberOfBytes": "64"
       },
-      "t_struct(Player)173_storage": {
+      "t_struct(Player)201_storage": {
         "encoding": "inplace",
         "label": "struct FootballGame.Player",
         "members": [
           {
-            "astId": 154,
+            "astId": 182,
             "contract": "contracts/FootballGame.sol:FootballGame",
             "label": "player_id",
             "offset": 0,
@@ -623,7 +760,7 @@
             "type": "t_uint256"
           },
           {
-            "astId": 156,
+            "astId": 184,
             "contract": "contracts/FootballGame.sol:FootballGame",
             "label": "team_id",
             "offset": 0,
@@ -631,7 +768,7 @@
             "type": "t_uint256"
           },
           {
-            "astId": 158,
+            "astId": 186,
             "contract": "contracts/FootballGame.sol:FootballGame",
             "label": "position",
             "offset": 0,
@@ -639,7 +776,7 @@
             "type": "t_uint256"
           },
           {
-            "astId": 160,
+            "astId": 188,
             "contract": "contracts/FootballGame.sol:FootballGame",
             "label": "attack",
             "offset": 0,
@@ -647,7 +784,7 @@
             "type": "t_uint128"
           },
           {
-            "astId": 162,
+            "astId": 190,
             "contract": "contracts/FootballGame.sol:FootballGame",
             "label": "defense",
             "offset": 16,
@@ -655,7 +792,7 @@
             "type": "t_uint128"
           },
           {
-            "astId": 164,
+            "astId": 192,
             "contract": "contracts/FootballGame.sol:FootballGame",
             "label": "speed",
             "offset": 0,
@@ -663,7 +800,7 @@
             "type": "t_uint128"
           },
           {
-            "astId": 166,
+            "astId": 194,
             "contract": "contracts/FootballGame.sol:FootballGame",
             "label": "power",
             "offset": 16,
@@ -671,7 +808,7 @@
             "type": "t_uint128"
           },
           {
-            "astId": 168,
+            "astId": 196,
             "contract": "contracts/FootballGame.sol:FootballGame",
             "label": "stamina",
             "offset": 0,
@@ -679,7 +816,7 @@
             "type": "t_uint128"
           },
           {
-            "astId": 170,
+            "astId": 198,
             "contract": "contracts/FootballGame.sol:FootballGame",
             "label": "technique",
             "offset": 16,
@@ -687,7 +824,7 @@
             "type": "t_uint128"
           },
           {
-            "astId": 172,
+            "astId": 200,
             "contract": "contracts/FootballGame.sol:FootballGame",
             "label": "goalkeeping",
             "offset": 0,

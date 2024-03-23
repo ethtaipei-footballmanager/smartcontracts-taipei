@@ -8,7 +8,9 @@ temp
 
 #Hardhat files
 cache
-artifacts
+artifacts/*
+# but do not ignore the contracts directory within artifacts
+!artifacts/contracts/
 
 #zkSync files
 artifacts-zk
