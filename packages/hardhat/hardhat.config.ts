@@ -19,7 +19,6 @@ const deployerPrivateKey =
   process.env.DEPLOYER_PRIVATE_KEY ?? "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80";
 const opponentPrivateKey = process.env.OPPONENT_PRIVATE_KEY ?? "";
 // If not set, it uses ours Etherscan default API key.
-const etherscanApiKey = process.env.ETHERSCAN_API_KEY || "DNXJA8RX2Q3VZ4URQIWP7Z68CJXQZSC6AW";
 
 const config: HardhatUserConfig = {
   solidity: {
@@ -140,23 +139,54 @@ const config: HardhatUserConfig = {
   },
   // configuration for harhdat-verify plugin
   etherscan: {
-    apiKey: `${etherscanApiKey}`,
+    apiKey: {
+      sepolia: process.env.ETHERSCAN_API_KEY,
+      linea: process.env.LINEASCAN_API_KEY,
+      scrollSepolia: process.env.ETHERSCAN_API_KEY,
+      optimismSepolia: process.env.ETHERSCAN_API_KEY,
+      cardona: process.env.POLYGON_API_KEY,
+      thunder: process.env.ETHERSCAN_API_KEY,
+    },
 
     customChains: [
-      // {
-      //   network: "linea",
-      //   chainId: 59140,
-      //   urls: {
-      //     apiURL: "https://api-testnet.lineascan.build/api",
-      //     browserURL: "	https://goerli.lineascan.build/address",
-      //   },
-      // },
+      {
+        network: "linea",
+        chainId: 59140,
+        urls: {
+          apiURL: "https://api-testnet.lineascan.build/api",
+          browserURL: "	https://goerli.lineascan.build/address",
+        },
+      },
       {
         network: "scrollSepolia",
         chainId: 534351,
         urls: {
           apiURL: "https://sepolia-blockscout.scroll.io/api",
           browserURL: "https://sepolia-blockscout.scroll.io/",
+        },
+      },
+      {
+        network: "optimismSepolia",
+        chainId: 11155420,
+        urls: {
+          apiURL: "https://sepolia-optimistic.etherscan.io/api",
+          browserURL: "https://sepolia-optimistic.etherscan.io",
+        },
+      },
+      {
+        network: "cardona",
+        chainId: 2442,
+        urls: {
+          apiURL: "https://cardona-zkevm.polygonscan.com/api",
+          browserURL: "https://cardona-zkevm.polygonscan.com/",
+        },
+      },
+      {
+        network: "thunder",
+        chainId: 11155420,
+        urls: {
+          apiURL: "https://sepolia-optimistic.etherscan.io/api",
+          browserURL: "https://sepolia-optimistic.etherscan.io",
         },
       },
     ],

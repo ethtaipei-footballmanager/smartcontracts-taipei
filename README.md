@@ -8,7 +8,7 @@
 
 ⚙️ Built using Solidity, Hardhat, wagmi, React and Javascript.
 
-- 🧾 **Privacy on TEN**: Players commit to a strategy privately using TEN.
+- 🧾 **Privacy on TEN**: Players commit to a strategy privately using TEN Protocol.
 - ⛓️ **Smart contracts**: Verifies strategies and results of the game.
 - ⏱️ **Timelock funds**: The wagered amount is secured by a timelock, to prevents ghosting by losing players.
 - 🖼️ **Frontend**: Results are generated in the browser based on strategies.
@@ -62,9 +62,9 @@ This function is only available after X blocks have passed since acceptGame was 
 ## Deployed contracts
 
 - [TEN deployed contract 0x1e61235A37ee5642d71c6c3f060b6E94b05EE6E7 in tx 0x110cba2a6825baa98798fac3b00e754f33b4c75f7067a1e16b1788103bdee407]()
-- [Scroll](https://sepolia.scrollscan.dev/address/0x072117443ceb3920d9d95d2f005b23fec9e761ad)
-- [Linea](https://goerli.lineascan.build/address/0x072117443ceb3920d9d95d2f005b23fec9e761ad)
-- [Optimism](https://sepolia-optimism.etherscan.io/address/0x072117443ceb3920d9d95d2f005b23fec9e761ad)
+- [Scroll](https://sepolia.scrollscan.dev/address/0x51BB389e35218E54c3bEEB89Eba750c2a308faD2)
+- [Linea](https://goerli.lineascan.build/address/address/0xab2EE87906222B433AF6836b1f1588b79294f67e#code)
+- [Optimism](https://sepolia-optimism.etherscan.io/address/0xab2EE87906222B433AF6836b1f1588b79294f67e)
 - [Polygon zkEVM cardona](https://cardona-zkevm.polygonscan.com/address/0x072117443ceb3920d9d95d2f005b23fec9e761ad)
 - [Thundercore](https://explorer-testnet.thundercore.com/address/0x072117443CEb3920d9D95d2F005b23FeC9E761aD)
 
