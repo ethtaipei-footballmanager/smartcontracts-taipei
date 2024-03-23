@@ -32,8 +32,8 @@ async function main() {
     // Assume game ID is 1 for this example. Retrieve actual game ID from the event log in a real scenario.
     const gameId = 1;
 
-    footballGame = await FootballGame.attach(footballGameAddress).connect(opponent_signer);
-    footballCoin = await FootballCoin.attach(footballCoinAddress).connect(opponent_signer);
+    footballGame = await FootballGameContract.attach(footballGameAddress).connect(opponent_signer);
+    footballCoin = await FootballCoinContract.attach(footballCoinAddress).connect(opponent_signer);
 
     // Mint and approve tokens for challenger
     const mintTx2 = await footballCoin.mint(opponentAddress, wagerAmount);
@@ -43,10 +43,10 @@ async function main() {
 
     // Accept the game
     console.log(`Accepting the game with ID: ${gameId}`);
-    const acceptTx = await footballGame.connect(opponentAddress).acceptGame(gameId, defaultFormation);
+    const acceptTx = await footballGame.acceptGame(gameId, defaultFormation);
     await acceptTx.wait();
 
-    footballGame = await FootballGame.attach(footballGameAddress).connect(challenger_signer);
+    footballGame = await FootballGameContract.attach(footballGameAddress).connect(challenger_signer);
 
     // Reveal the outcome
     console.log(`Revealing the outcome for the game with ID: ${gameId}`);
