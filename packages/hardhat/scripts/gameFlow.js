@@ -6,16 +6,16 @@ async function main() {
     const challengerAddress = "0xbb1DF1ab33786Ac6B91d9D16b445c7b66825979e";
     const opponentAddress = "0x0534eaF0FdCE77771b7988F8501AEac47f53f011";
     const wagerAmount = "1000000000000000000"; // 1 token in Wei
-    const defaultFormation = [1, 5, 6, 7 , 8 ,9 ,10, 11, 12 ,13, 14]
+    const defaultFormation = [1, 4, 5, 6, 7 , 8 ,9 ,10, 11, 12 ,13]
 
     const challenger_signer = (await ethers.getSigners())[0];
     const opponent_signer = (await ethers.getSigners())[1];
 
-    const FootballGame = await ethers.getContractFactory("FootballGame");
-    const footballGame = await FootballGame.attach(footballGameAddress).connect(challenger_signer);
+    const FootballGameContract = await ethers.getContractFactory("FootballGame");
+    let footballGame = await FootballGameContract.attach(footballGameAddress).connect(challenger_signer);
 
-    const FootballCoin = await ethers.getContractFactory("FootballCoin");
-    const footballCoin = await FootballCoin.attach(footballCoinAddress).connect(challenger_signer);
+    const FootballCoinContract = await ethers.getContractFactory("FootballCoin");
+    let footballCoin = await FootballCoinContract.attach(footballCoinAddress).connect(challenger_signer);
 
     // Mint and approve tokens for challenger
     const mintTx = await footballCoin.mint(challengerAddress, wagerAmount);
@@ -26,6 +26,7 @@ async function main() {
     // Propose a game
     console.log(`Proposing a game from ${challengerAddress} to ${opponentAddress}`);
     const proposeTx = await footballGame.proposeGame(opponentAddress, wagerAmount, defaultFormation);
+    console.log("gm");
     await proposeTx.wait();
 
     // Assume game ID is 1 for this example. Retrieve actual game ID from the event log in a real scenario.
