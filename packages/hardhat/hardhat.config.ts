@@ -15,9 +15,9 @@ import "ten-hardhat-plugin";
 // You can get your own at https://dashboard.alchemyapi.io
 const providerApiKey = process.env.ALCHEMY_API_KEY || "oKxs-03sij-U_N0iOlrSsZFr29-IqbuF";
 // If not set, it uses the hardhat account 0 private key.
-const deployerPrivateKey = "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80";
-// const deployerPrivateKey =
-//   process.env.DEPLOYER_PRIVATE_KEY ?? "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80";
+// const deployerPrivateKey = "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80";
+const deployerPrivateKey =
+  process.env.DEPLOYER_PRIVATE_KEY ?? "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80";
 // If not set, it uses ours Etherscan default API key.
 const etherscanApiKey = process.env.ETHERSCAN_API_KEY || "DNXJA8RX2Q3VZ4URQIWP7Z68CJXQZSC6AW";
 
@@ -120,15 +120,42 @@ const config: HardhatUserConfig = {
       url: "https://sepolia.publicgoods.network",
       accounts: [deployerPrivateKey],
     },
+    cardona: {
+      url: "https://rpc.cardona.zkevm-rpc.com",
+      accounts: [deployerPrivateKey],
+    },
     ten: {
       url: "https://testnet.ten.xyz/v1/",
       chainId: 443,
+      accounts: [deployerPrivateKey],
+    },
+    linea: {
+      url: `https://linea-goerli.infura.io/v3/${process.env.INFURA_API_KEY}`,
       accounts: [deployerPrivateKey],
     },
   },
   // configuration for harhdat-verify plugin
   etherscan: {
     apiKey: `${etherscanApiKey}`,
+
+    customChains: [
+      // {
+      //   network: "linea",
+      //   chainId: 59140,
+      //   urls: {
+      //     apiURL: "https://api-testnet.lineascan.build/api",
+      //     browserURL: "	https://goerli.lineascan.build/address",
+      //   },
+      // },
+      {
+        network: "scrollSepolia",
+        chainId: 534351,
+        urls: {
+          apiURL: "https://sepolia-blockscout.scroll.io/api",
+          browserURL: "https://sepolia-blockscout.scroll.io/",
+        },
+      },
+    ],
   },
   // configuration for etherscan-verify from hardhat-deploy plugin
   verify: {

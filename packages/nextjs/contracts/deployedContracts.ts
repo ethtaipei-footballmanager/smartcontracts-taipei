@@ -4,6 +4,1837 @@
  */
 import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 
-const deployedContracts = {} as const;
+const deployedContracts = {
+  443: {
+    FootballGame: {
+      address: "0x072117443CEb3920d9D95d2F005b23FeC9E761aD",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "contract IERC20",
+              name: "_footballCoin",
+              type: "address",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "gameId",
+              type: "uint256",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "opponent",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "wagerAmount",
+              type: "uint256",
+            },
+          ],
+          name: "GameAccepted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "gameId",
+              type: "uint256",
+            },
+          ],
+          name: "GameFinished",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "gameId",
+              type: "uint256",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "challenger",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "opponent",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "wagerAmount",
+              type: "uint256",
+            },
+          ],
+          name: "GameProposed",
+          type: "event",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "gameId",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256[]",
+              name: "formation",
+              type: "uint256[]",
+            },
+          ],
+          name: "acceptGame",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "playerId",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "teamId",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "position",
+              type: "uint256",
+            },
+            {
+              internalType: "uint128",
+              name: "attack",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "defense",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "speed",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "power",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "stamina",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "technique",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "goalkeeping",
+              type: "uint128",
+            },
+          ],
+          name: "addPlayer",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "footballCoin",
+          outputs: [
+            {
+              internalType: "contract IERC20",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "gameCount",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "gameResults",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "goalsHomeTeam",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "goalsAwayTeam",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "games",
+          outputs: [
+            {
+              internalType: "address",
+              name: "challenger",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "opponent",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "wagerAmount",
+              type: "uint256",
+            },
+            {
+              internalType: "bool",
+              name: "isFinished",
+              type: "bool",
+            },
+            {
+              internalType: "string",
+              name: "result",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "owner",
+          outputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "players",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "player_id",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "team_id",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "position",
+              type: "uint256",
+            },
+            {
+              internalType: "uint128",
+              name: "attack",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "defense",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "speed",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "power",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "stamina",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "technique",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "goalkeeping",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "opponent",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "wagerAmount",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256[]",
+              name: "formation",
+              type: "uint256[]",
+            },
+          ],
+          name: "proposeGame",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "gameId",
+              type: "uint256",
+            },
+          ],
+          name: "revealOutcome",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+  },
+  2442: {
+    FootballGame: {
+      address: "0x072117443CEb3920d9D95d2F005b23FeC9E761aD",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "contract IERC20",
+              name: "_footballCoin",
+              type: "address",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "gameId",
+              type: "uint256",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "opponent",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "wagerAmount",
+              type: "uint256",
+            },
+          ],
+          name: "GameAccepted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "gameId",
+              type: "uint256",
+            },
+          ],
+          name: "GameFinished",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "gameId",
+              type: "uint256",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "challenger",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "opponent",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "wagerAmount",
+              type: "uint256",
+            },
+          ],
+          name: "GameProposed",
+          type: "event",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "gameId",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256[]",
+              name: "formation",
+              type: "uint256[]",
+            },
+          ],
+          name: "acceptGame",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "playerId",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "teamId",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "position",
+              type: "uint256",
+            },
+            {
+              internalType: "uint128",
+              name: "attack",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "defense",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "speed",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "power",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "stamina",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "technique",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "goalkeeping",
+              type: "uint128",
+            },
+          ],
+          name: "addPlayer",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "footballCoin",
+          outputs: [
+            {
+              internalType: "contract IERC20",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "gameCount",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "gameResults",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "goalsHomeTeam",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "goalsAwayTeam",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "games",
+          outputs: [
+            {
+              internalType: "address",
+              name: "challenger",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "opponent",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "wagerAmount",
+              type: "uint256",
+            },
+            {
+              internalType: "bool",
+              name: "isFinished",
+              type: "bool",
+            },
+            {
+              internalType: "string",
+              name: "result",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "owner",
+          outputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "players",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "player_id",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "team_id",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "position",
+              type: "uint256",
+            },
+            {
+              internalType: "uint128",
+              name: "attack",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "defense",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "speed",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "power",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "stamina",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "technique",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "goalkeeping",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "opponent",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "wagerAmount",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256[]",
+              name: "formation",
+              type: "uint256[]",
+            },
+          ],
+          name: "proposeGame",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "gameId",
+              type: "uint256",
+            },
+          ],
+          name: "revealOutcome",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+  },
+  59140: {
+    FootballGame: {
+      address: "0x072117443CEb3920d9D95d2F005b23FeC9E761aD",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "contract IERC20",
+              name: "_footballCoin",
+              type: "address",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "gameId",
+              type: "uint256",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "opponent",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "wagerAmount",
+              type: "uint256",
+            },
+          ],
+          name: "GameAccepted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "gameId",
+              type: "uint256",
+            },
+          ],
+          name: "GameFinished",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "gameId",
+              type: "uint256",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "challenger",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "opponent",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "wagerAmount",
+              type: "uint256",
+            },
+          ],
+          name: "GameProposed",
+          type: "event",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "gameId",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256[]",
+              name: "formation",
+              type: "uint256[]",
+            },
+          ],
+          name: "acceptGame",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "playerId",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "teamId",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "position",
+              type: "uint256",
+            },
+            {
+              internalType: "uint128",
+              name: "attack",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "defense",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "speed",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "power",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "stamina",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "technique",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "goalkeeping",
+              type: "uint128",
+            },
+          ],
+          name: "addPlayer",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "footballCoin",
+          outputs: [
+            {
+              internalType: "contract IERC20",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "gameCount",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "gameResults",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "goalsHomeTeam",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "goalsAwayTeam",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "games",
+          outputs: [
+            {
+              internalType: "address",
+              name: "challenger",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "opponent",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "wagerAmount",
+              type: "uint256",
+            },
+            {
+              internalType: "bool",
+              name: "isFinished",
+              type: "bool",
+            },
+            {
+              internalType: "string",
+              name: "result",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "owner",
+          outputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "players",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "player_id",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "team_id",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "position",
+              type: "uint256",
+            },
+            {
+              internalType: "uint128",
+              name: "attack",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "defense",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "speed",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "power",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "stamina",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "technique",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "goalkeeping",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "opponent",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "wagerAmount",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256[]",
+              name: "formation",
+              type: "uint256[]",
+            },
+          ],
+          name: "proposeGame",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "gameId",
+              type: "uint256",
+            },
+          ],
+          name: "revealOutcome",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+  },
+  534351: {
+    FootballGame: {
+      address: "0x072117443CEb3920d9D95d2F005b23FeC9E761aD",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "contract IERC20",
+              name: "_footballCoin",
+              type: "address",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "gameId",
+              type: "uint256",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "opponent",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "wagerAmount",
+              type: "uint256",
+            },
+          ],
+          name: "GameAccepted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "gameId",
+              type: "uint256",
+            },
+          ],
+          name: "GameFinished",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "gameId",
+              type: "uint256",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "challenger",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "opponent",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "wagerAmount",
+              type: "uint256",
+            },
+          ],
+          name: "GameProposed",
+          type: "event",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "gameId",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256[]",
+              name: "formation",
+              type: "uint256[]",
+            },
+          ],
+          name: "acceptGame",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "playerId",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "teamId",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "position",
+              type: "uint256",
+            },
+            {
+              internalType: "uint128",
+              name: "attack",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "defense",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "speed",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "power",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "stamina",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "technique",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "goalkeeping",
+              type: "uint128",
+            },
+          ],
+          name: "addPlayer",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "footballCoin",
+          outputs: [
+            {
+              internalType: "contract IERC20",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "gameCount",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "gameResults",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "goalsHomeTeam",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "goalsAwayTeam",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "games",
+          outputs: [
+            {
+              internalType: "address",
+              name: "challenger",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "opponent",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "wagerAmount",
+              type: "uint256",
+            },
+            {
+              internalType: "bool",
+              name: "isFinished",
+              type: "bool",
+            },
+            {
+              internalType: "string",
+              name: "result",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "owner",
+          outputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "players",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "player_id",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "team_id",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "position",
+              type: "uint256",
+            },
+            {
+              internalType: "uint128",
+              name: "attack",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "defense",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "speed",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "power",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "stamina",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "technique",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "goalkeeping",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "opponent",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "wagerAmount",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256[]",
+              name: "formation",
+              type: "uint256[]",
+            },
+          ],
+          name: "proposeGame",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "gameId",
+              type: "uint256",
+            },
+          ],
+          name: "revealOutcome",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+  },
+  11155420: {
+    FootballGame: {
+      address: "0x072117443CEb3920d9D95d2F005b23FeC9E761aD",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "contract IERC20",
+              name: "_footballCoin",
+              type: "address",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "gameId",
+              type: "uint256",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "opponent",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "wagerAmount",
+              type: "uint256",
+            },
+          ],
+          name: "GameAccepted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "gameId",
+              type: "uint256",
+            },
+          ],
+          name: "GameFinished",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "gameId",
+              type: "uint256",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "challenger",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "opponent",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "wagerAmount",
+              type: "uint256",
+            },
+          ],
+          name: "GameProposed",
+          type: "event",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "gameId",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256[]",
+              name: "formation",
+              type: "uint256[]",
+            },
+          ],
+          name: "acceptGame",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "playerId",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "teamId",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "position",
+              type: "uint256",
+            },
+            {
+              internalType: "uint128",
+              name: "attack",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "defense",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "speed",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "power",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "stamina",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "technique",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "goalkeeping",
+              type: "uint128",
+            },
+          ],
+          name: "addPlayer",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "footballCoin",
+          outputs: [
+            {
+              internalType: "contract IERC20",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "gameCount",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "gameResults",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "goalsHomeTeam",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "goalsAwayTeam",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "games",
+          outputs: [
+            {
+              internalType: "address",
+              name: "challenger",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "opponent",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "wagerAmount",
+              type: "uint256",
+            },
+            {
+              internalType: "bool",
+              name: "isFinished",
+              type: "bool",
+            },
+            {
+              internalType: "string",
+              name: "result",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "owner",
+          outputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "players",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "player_id",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "team_id",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "position",
+              type: "uint256",
+            },
+            {
+              internalType: "uint128",
+              name: "attack",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "defense",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "speed",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "power",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "stamina",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "technique",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "goalkeeping",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "opponent",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "wagerAmount",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256[]",
+              name: "formation",
+              type: "uint256[]",
+            },
+          ],
+          name: "proposeGame",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "gameId",
+              type: "uint256",
+            },
+          ],
+          name: "revealOutcome",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+  },
+} as const;
 
 export default deployedContracts satisfies GenericContractsDeclaration;
