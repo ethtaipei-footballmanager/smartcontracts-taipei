@@ -4,7 +4,7 @@
 <img src="logo.png" alt="logo" width="500"/>
 </p>
 
-⚽ Ten Taipei Football is an on-chain football manager game that leverages the privacy that TEN Protocol provides to hide players' strategies from opponents.
+⚽ Ten Taipei Football Manager is an on-chain football manager game that leverages the privacy that TEN Protocol provides to hide players' strategies from opponents.
 
 ⚙️ Built using Solidity, Hardhat, wagmi, React and Javascript.
 

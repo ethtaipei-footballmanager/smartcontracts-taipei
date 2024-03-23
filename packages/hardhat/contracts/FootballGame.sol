@@ -32,6 +32,16 @@ contract FootballGame {
 	mapping(uint256 => GameResult) public gameResults;
 	uint256 public gameCount;
 
+	function getGameResult(
+		uint256 gameId
+	) public view returns (GameResult memory) {
+		return gameResults[gameId];
+	}
+
+	function getGameCount() public view returns (uint256) {
+		return gameCount;
+	}
+
 	///////////////
 	// EVENTS  //
 	///////////////
@@ -40,13 +50,15 @@ contract FootballGame {
 		uint256 gameId,
 		address indexed challenger,
 		address indexed opponent,
-		uint256 wagerAmount
+		uint256 wagerAmount,
+		uint blockNumber
 	);
 
 	event GameAccepted(
 		uint256 gameId,
 		address indexed opponent,
-		uint256 wagerAmount
+		uint256 wagerAmount,
+		uint blockNumber
 	);
 
 	event GameFinished(uint256 gameId);
@@ -149,7 +161,13 @@ contract FootballGame {
 		challenger_formation[newGameId] = formation;
 
 		// Emitting events to notify about the new game proposal
-		emit GameProposed(newGameId, msg.sender, opponent, wagerAmount);
+		emit GameProposed(
+			newGameId,
+			msg.sender,
+			opponent,
+			wagerAmount,
+			block.number
+		);
 	}
 
 	function acceptGame(uint256 gameId, uint256[] memory formation) public {
@@ -175,7 +193,7 @@ contract FootballGame {
 		game.blockNumber = block.number;
 
 		// Notify about game acceptance
-		emit GameAccepted(gameId, msg.sender, game.wagerAmount);
+		emit GameAccepted(gameId, msg.sender, game.wagerAmount, block.number);
 	}
 
 	function revealOutcome(uint256 gameId) public {
@@ -195,7 +213,7 @@ contract FootballGame {
 		game.isFinished = true;
 
 		address winner = determineWinner(game, result);
-		payoutWinners(game, winner);
+		// payoutWinners(game, winner);
 
 		emit GameFinished(gameId);
 	}

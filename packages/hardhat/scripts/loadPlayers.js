@@ -4,15 +4,15 @@ async function main() {
     const [deployer] = await ethers.getSigners();
     console.log("Interacting with the smart contract using the account:", deployer.address);
 
-    const contractAddress = "0x1e61235A37ee5642d71c6c3f060b6E94b05EE6E7";
+    const contractAddress = "0x940540782303c7380b28D0781d076ad05d1cB6eA";
     const contractArtifact = await hre.artifacts.readArtifact("FootballGame");
     const contract = new ethers.Contract(contractAddress, contractArtifact.abi, deployer);
 
     const players = [
-        // { player_uid: 1, team_id: 1, position: 1, attack: 119, defense: 79, speed: 58, power: 64, stamina: 101, technique: 104, goalkeeping: 56 },
-        // { player_uid: 4, team_id: 1, position: 4, attack: 163, defense: 143, speed: 202, power: 185, stamina: 174, technique: 181, goalkeeping: 0 },
-        // { player_uid: 5, team_id: 1, position: 4, attack: 178, defense: 224, speed: 163, power: 185, stamina: 179, technique: 191, goalkeeping: 0 },
-        // { player_uid: 6, team_id: 1, position: 2, attack: 129, defense: 125, speed: 113, power: 110, stamina: 119, technique: 109, goalkeeping: 0 },
+        { player_uid: 1, team_id: 1, position: 1, attack: 119, defense: 79, speed: 58, power: 64, stamina: 101, technique: 104, goalkeeping: 56 },
+        { player_uid: 4, team_id: 1, position: 4, attack: 163, defense: 143, speed: 202, power: 185, stamina: 174, technique: 181, goalkeeping: 0 },
+        { player_uid: 5, team_id: 1, position: 4, attack: 178, defense: 224, speed: 163, power: 185, stamina: 179, technique: 191, goalkeeping: 0 },
+        { player_uid: 6, team_id: 1, position: 2, attack: 129, defense: 125, speed: 113, power: 110, stamina: 119, technique: 109, goalkeeping: 0 },
         { player_uid: 7, team_id: 1, position: 2, attack: 188, defense: 130, speed: 148, power: 85, stamina: 104, technique: 108, goalkeeping: 0 },
         { player_uid: 8, team_id: 1, position: 4, attack: 157, defense: 127, speed: 193, power: 210, stamina: 126, technique: 195, goalkeeping: 0 },
         { player_uid: 9, team_id: 1, position: 4, attack: 128, defense: 173, speed: 147, power: 116, stamina: 138, technique: 140, goalkeeping: 0 },
@@ -40,7 +40,7 @@ async function main() {
                 player.goalkeeping
             );
             await tx.wait();
-            console.log(`Player ${player.player_name} added successfully.`);
+            console.log(`Player ${player.player_uid} added successfully.`);
         } catch (error) {
             console.error(`Failed to add player ${player.player_name}:`, error);
         }

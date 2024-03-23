@@ -1429,7 +1429,7 @@ const deployedContracts = {
       },
     },
     FootballGame: {
-      address: "0xdC2c3A4432e0ce69C7579aC62704Bba5D155566A",
+      address: "0x940540782303c7380b28D0781d076ad05d1cB6eA",
       abi: [
         {
           inputs: [
@@ -1466,6 +1466,12 @@ const deployedContracts = {
               indexed: false,
               internalType: "uint256",
               name: "wagerAmount",
+              type: "uint256",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "blockNumber",
               type: "uint256",
             },
           ],
@@ -1523,6 +1529,12 @@ const deployedContracts = {
               indexed: false,
               internalType: "uint256",
               name: "wagerAmount",
+              type: "uint256",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "blockNumber",
               type: "uint256",
             },
           ],
@@ -1730,6 +1742,50 @@ const deployedContracts = {
               internalType: "uint256",
               name: "blockNumber",
               type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "getGameCount",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "gameId",
+              type: "uint256",
+            },
+          ],
+          name: "getGameResult",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "uint256",
+                  name: "goalsHomeTeam",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "goalsAwayTeam",
+                  type: "uint256",
+                },
+              ],
+              internalType: "struct FootballGame.GameResult",
+              name: "",
+              type: "tuple",
             },
           ],
           stateMutability: "view",

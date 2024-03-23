@@ -1,7 +1,7 @@
 const { ethers } = require("hardhat");
 
 async function main() {
-    const footballGameAddress = "0x1e61235A37ee5642d71c6c3f060b6E94b05EE6E7";
+    const footballGameAddress = "0x940540782303c7380b28D0781d076ad05d1cB6eA";
     const footballCoinAddress = "0xc314278217Ae8D99D95BdAb3432e174A1a483Ed1"; // Address of deployed FootballCoin contract
     const challengerAddress = "0xbb1DF1ab33786Ac6B91d9D16b445c7b66825979e";
     const opponentAddress = "0x0534eaF0FdCE77771b7988F8501AEac47f53f011";
@@ -30,7 +30,8 @@ async function main() {
     await proposeTx.wait();
 
     // Assume game ID is 1 for this example. Retrieve actual game ID from the event log in a real scenario.
-    const gameId = 1;
+    const gameId = await footballGame.getGameCount();
+    console.log(`Game ID: ${gameId}`);
 
     footballGame = await FootballGameContract.attach(footballGameAddress).connect(opponent_signer);
     footballCoin = await FootballCoinContract.attach(footballCoinAddress).connect(opponent_signer);
@@ -52,6 +53,9 @@ async function main() {
     console.log(`Revealing the outcome for the game with ID: ${gameId}`);
     const revealTx = await footballGame.revealOutcome(gameId);
     await revealTx.wait();
+
+    const results = await footballGame.getGameResult(gameId);
+    console.log(`Game result: ${results}`);
 }
 
 main()
