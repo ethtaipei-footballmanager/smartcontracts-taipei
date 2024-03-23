@@ -1,7 +1,7 @@
-# Ten Taipei Football
+# Ten Taipei Football Manager
 
 <p align="center">
-<img src="https://github.com/arjanjohan/aleo-football/blob/cc1f8b8f7e0dfc350ab39ee87ffa07d1dcfa14e0/public/logo_2.png" alt="logo" width="500"/>
+<img src="logo.png" alt="logo" width="500"/>
 </p>
 
 ⚽ Ten Taipei Football is an on-chain football manager game that leverages the privacy that TEN provides to hide players' strategies from opponents.

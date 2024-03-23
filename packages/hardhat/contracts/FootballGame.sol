@@ -19,8 +19,6 @@ contract FootballGame {
 	struct GameResult {
 		uint goalsHomeTeam;
 		uint goalsAwayTeam;
-		uint256[] goalScorersHome;
-		uint256[] goalScorersAway;
 	}
 
 	///////////////
@@ -124,6 +122,9 @@ contract FootballGame {
 			footballCoin.allowance(msg.sender, address(this)) >= wagerAmount,
 			"Insufficient allowance for wager"
 		);
+		for (uint i = 0; i < formation.length; i++) {
+			require(players[formation[i]].player_id != 0, "Invalid player id");
+		}
 
 		// Transfer the wager amount from the challenger to the contract
 		footballCoin.transferFrom(msg.sender, address(this), wagerAmount);
@@ -157,6 +158,9 @@ contract FootballGame {
 				game.wagerAmount,
 			"Insufficient allowance for wager"
 		);
+		for (uint i = 0; i < formation.length; i++) {
+			require(players[formation[i]].player_id != 0, "Invalid player id");
+		}
 
 		// Transfer the wager amount from the opponent to the contract
 		footballCoin.transferFrom(msg.sender, address(this), game.wagerAmount);
@@ -166,6 +170,7 @@ contract FootballGame {
 		// Notify about game acceptance
 		emit GameAccepted(gameId, msg.sender, game.wagerAmount);
 	}
+
 	function revealOutcome(uint256 gameId) public {
 		Game storage game = games[gameId];
 
@@ -195,13 +200,51 @@ contract FootballGame {
 	function determineGameResult(
 		Game storage game
 	) private view returns (GameResult memory) {
-		return
-			GameResult({
-				goalsHomeTeam: 1, // Placeholder
-				goalsAwayTeam: 2, // Placeholder
-				goalScorersHome: new uint256[](0),
-				goalScorersAway: new uint256[](0)
-			});
+		GameResult memory result = GameResult({
+			goalsHomeTeam: 0,
+			goalsAwayTeam: 0
+		});
+
+		// Player memory homeGoalkeeper = players[game.challengerFormation[1]];
+		// Player memory awayGoalkeeper = players[game.opponentFormation[1]];
+		bytes32 prevRandao = blockhash(block.number - 1);
+		uint256[] memory randomValues = extractRandomValues(10, prevRandao);
+		for (uint i = 1; i < game.challengerFormation.length; i++) {
+			Player memory homePlayer = players[game.challengerFormation[i]];
+			Player memory awayPlayer = players[
+				game.opponentFormation[game.challengerFormation.length - i]
+			];
+			uint256 totalspeed = homePlayer.speed + awayPlayer.speed;
+			uint256 randomSpeed = uint256(prevRandao) % totalspeed;
+			if (homePlayer.speed > randomSpeed) {
+				// Home player attacks
+				if (homePlayer.attack > randomValues[i - 1]) {
+					result.goalsHomeTeam++;
+				}
+			} else {
+				if (awayPlayer.attack > randomValues[i - 1]) {
+					result.goalsAwayTeam++;
+				}
+			}
+		}
+
+		return result;
+	}
+
+	function extractRandomValues(
+		uint numberOfValues,
+		bytes32 prevRandao
+	) public pure returns (uint[] memory) {
+		require(numberOfValues > 0, "Number of values must be greater than 0");
+		uint[] memory randomValues = new uint[](numberOfValues);
+		uint256 randValue = uint256(prevRandao);
+
+		for (uint i = 0; i < numberOfValues; i++) {
+			randomValues[i] = randValue % 100;
+			randValue = randValue / 256; // Shift right by 2 hex digits
+		}
+
+		return randomValues;
 	}
 
 	function determineWinner(
@@ -215,6 +258,7 @@ contract FootballGame {
 		}
 		return address(0); // It's a draw
 	}
+
 	function payoutWinners(Game storage game, address winner) private {
 		if (winner == address(0)) {
 			require(

@@ -1105,7 +1105,7 @@ const deployedContracts = {
   },
   534351: {
     FootballGame: {
-      address: "0x072117443CEb3920d9D95d2F005b23FeC9E761aD",
+      address: "0xab2EE87906222B433AF6836b1f1588b79294f67e",
       abi: [
         {
           inputs: [
@@ -1261,6 +1261,30 @@ const deployedContracts = {
           name: "addPlayer",
           outputs: [],
           stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "numberOfValues",
+              type: "uint256",
+            },
+            {
+              internalType: "bytes32",
+              name: "prevRandao",
+              type: "bytes32",
+            },
+          ],
+          name: "extractRandomValues",
+          outputs: [
+            {
+              internalType: "uint256[]",
+              name: "",
+              type: "uint256[]",
+            },
+          ],
+          stateMutability: "pure",
           type: "function",
         },
         {

@@ -133,6 +133,10 @@ const config: HardhatUserConfig = {
       url: `https://linea-goerli.infura.io/v3/${process.env.INFURA_API_KEY}`,
       accounts: [deployerPrivateKey],
     },
+    thunder: {
+      url: "https://testnet-rpc.thundercore.com",
+      accounts: [deployerPrivateKey],
+    },
   },
   // configuration for harhdat-verify plugin
   etherscan: {
@@ -156,12 +160,6 @@ const config: HardhatUserConfig = {
         },
       },
     ],
-  },
-  // configuration for etherscan-verify from hardhat-deploy plugin
-  verify: {
-    etherscan: {
-      apiKey: `${etherscanApiKey}`,
-    },
   },
   sourcify: {
     enabled: false,
