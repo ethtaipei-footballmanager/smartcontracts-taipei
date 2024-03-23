@@ -16,9 +16,48 @@
 ## Contents
 
 - [Contents](#contents)
+- [Game flow](#game-flow)
 - [Hackathon bounties](#deployed-contracts)
 - [Links](#links)
 - [Team](#team)
+
+## Game flow
+
+The game has 3 main steps:
+
+### 1: proposeGame
+
+To start a new game, a challenger calls this functions with 3 parameters:
+
+- opponent (address): Address of the opponent
+- wagerAmount (uint256): Amount to be wagered in gwei
+- formation (uint256): Array of player_id's
+
+This function creates a game object and stores it in a mapping by gameId. The formation is is stored privately in a seperate mapping.
+
+### 2: acceptGame
+
+To accept a game, an opponent calls this functions with 2 parameters:
+
+- gameId (uint256): Unique id for the game
+- formation (uint256): Array of player_id's
+  This function publicly stored the opponent's formation in the games mapping.
+
+### 3: revealOutcome
+
+Challenger calls this function to settle a game. The function takes 1 input
+
+- gameId (uint256): Unique id for the game
+
+This function reveals challenger formation, determines the outcome and pays out the winner.
+
+### 3b: revealOutcome
+
+Opponent calls this function to settle a game if the challenger does not call revealOutcome within the timelimit. The function takes 1 input
+
+- gameId (uint256): Unique id for the game
+
+This function is only available after X blocks have passed since acceptGame was executed. It pays out the wagered amounts to the opponent, punishing the challenger for ghosting.
 
 ## Deployed contracts
 
