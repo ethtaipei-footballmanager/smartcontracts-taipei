@@ -1,20 +1,4 @@
-const { ethers } = require("hardhat");
-const fs = require('fs');
-
-async function main() {
-    const [deployer] = await ethers.getSigners();
-    console.log("Interacting with the smart contract using the account:", deployer.address);
-
-
-    const rawdata = fs.readFileSync('/home/arjanjohan/git/hack/taipei24/scaffold-eth-2/packages/hardhat/scripts/contractAddresses.json');
-    const addresses = JSON.parse(rawdata);
-
-    const contractAddress = addresses.FootballGame;
-    const contractArtifact = await hre.artifacts.readArtifact("FootballGame");
-    const contract = new ethers.Contract(contractAddress, contractArtifact.abi, deployer);
-
-    const players = [
-        { player_uid: 1, team_id: 1, position: 1, attack: 119, defense: 79, speed: 58, power: 64, stamina: 101, technique: 104, goalkeeping: 56 },
+{ player_uid: 1, team_id: 1, position: 1, attack: 119, defense: 79, speed: 58, power: 64, stamina: 101, technique: 104, goalkeeping: 56 },
 { player_uid: 2, team_id: 1, position: 1, attack: 116, defense: 111, speed: 96, power: 61, stamina: 82, technique: 91, goalkeeping: 2 },
 { player_uid: 3, team_id: 1, position: 1, attack: 60, defense: 66, speed: 128, power: 112, stamina: 75, technique: 121, goalkeeping: 14 },
 { player_uid: 4, team_id: 1, position: 4, attack: 163, defense: 143, speed: 202, power: 185, stamina: 174, technique: 181, goalkeeping: 0 },
@@ -194,52 +178,3 @@ async function main() {
 { player_uid: 178, team_id: 6, position: 3, attack: 96, defense: 144, speed: 151, power: 99, stamina: 161, technique: 213, goalkeeping: 0 },
 { player_uid: 179, team_id: 6, position: 3, attack: 87, defense: 137, speed: 87, power: 128, stamina: 117, technique: 175, goalkeeping: 0 },
 { player_uid: 180, team_id: 6, position: 3, attack: 192, defense: 178, speed: 66, power: 168, stamina: 99, technique: 211, goalkeeping: 0 }
-    ];
-
-    console.log("Adding players to the contract...");
-    const MAX_RETRIES = 3; // Maximum number of retries for adding a player
-    const RETRY_INTERVAL = 5000; // Time to wait between retries in milliseconds
-    
-    for (const player of players) {
-        let attempt = 0;
-        let playerAdded = false;
-    
-        while (attempt < MAX_RETRIES && !playerAdded) {
-            console.log(`Adding player ${player.player_uid}... Attempt ${attempt + 1}`);
-            try {
-                await new Promise(resolve => setTimeout(resolve, RETRY_INTERVAL));
-                const tx = await contract.addPlayer(
-                    player.player_uid,
-                    player.team_id,
-                    player.position,
-                    player.attack,
-                    player.defense,
-                    player.speed,
-                    player.power,
-                    player.stamina,
-                    player.technique,
-                    player.goalkeeping
-                );
-                await tx.wait();
-                console.log(`Player ${player.player_uid} added successfully.`);
-                playerAdded = true; // Mark as added to exit the loop
-            } catch (error) {
-                // console.error(`Failed to add player ${player.player_uid}:`, error);
-                attempt++;
-                if (attempt >= MAX_RETRIES) {
-                    console.error(`Failed to add player ${player.player_uid} after ${MAX_RETRIES} attempts.`);
-                }
-            }
-        }
-    }
-    
-
-    console.log('All players have been added to the contract.');
-}
-
-main()
-    .then(() => process.exit(0))
-    .catch((error) => {
-        console.error(error);
-        process.exit(1);
-    });

@@ -10,24 +10,34 @@ async function main() {
     const footballCoinAddress = addresses.FootballCoin;
     const challengerAddress = addresses.ChallengerAddress;
     const opponentAddress = addresses.OpponentAddress;
+    const mintAmount = "5000000000000000000"; // 1 token in Wei
     const wagerAmount = "1000000000000000000"; // 1 token in Wei
     const defaultFormation = [1, 4, 5, 6, 7 , 8 ,9 ,10, 11, 12 ,13]
-
+    console.log("get signers");
     const challenger_signer = (await ethers.getSigners())[0];
     const opponent_signer = (await ethers.getSigners())[1];
 
+    console.log("get contracts");
     const FootballGameContract = await ethers.getContractFactory("FootballGame");
     let footballGame = await FootballGameContract.attach(footballGameAddress).connect(challenger_signer);
 
     const FootballCoinContract = await ethers.getContractFactory("FootballCoin");
     let footballCoin = await FootballCoinContract.attach(footballCoinAddress).connect(challenger_signer);
 
+    console.log("footballcoin adderss " + footballCoinAddress);
+    console.log("mint and approve");
+
+    await new Promise(resolve => setTimeout(resolve, 1000));
     // Mint and approve tokens for challenger
-    const mintTx = await footballCoin.mint(challengerAddress, wagerAmount);
+    const mintTx = await footballCoin.mint(challengerAddress, mintAmount);
     await mintTx.wait();
-    const approveTx = await footballCoin.approve(footballGameAddress, wagerAmount);
+
+
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    const approveTx = await footballCoin.approve(footballGameAddress, mintAmount);
     await approveTx.wait();
 
+    await new Promise(resolve => setTimeout(resolve, 1000));
     // Propose a game
     console.log(`Proposing a game from ${challengerAddress} to ${opponentAddress}`);
     const proposeTx = await footballGame.proposeGame(opponentAddress, wagerAmount, defaultFormation);
@@ -42,11 +52,16 @@ async function main() {
     footballGame = await FootballGameContract.attach(footballGameAddress).connect(opponent_signer);
     footballCoin = await FootballCoinContract.attach(footballCoinAddress).connect(opponent_signer);
 
+    await new Promise(resolve => setTimeout(resolve, 1000));
     // Mint and approve tokens for challenger
-    const mintTx2 = await footballCoin.mint(opponentAddress, wagerAmount);
+    const mintTx2 = await footballCoin.mint(opponentAddress, mintAmount);
     await mintTx2.wait();
-    const approveTx2 = await footballCoin.approve(footballGameAddress, wagerAmount);
+
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    const approveTx2 = await footballCoin.approve(footballGameAddress, mintAmount);
     await approveTx2.wait();
+
+    await new Promise(resolve => setTimeout(resolve, 1000));
 
     // Accept the game
     console.log(`Accepting the game with ID: ${gameId}`);

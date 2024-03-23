@@ -523,7 +523,7 @@ const deployedContracts = {
       },
     },
     FootballGame: {
-      address: "0x072117443CEb3920d9D95d2F005b23FeC9E761aD",
+      address: "0xc314278217Ae8D99D95BdAb3432e174A1a483Ed1",
       abi: [
         {
           inputs: [
@@ -531,6 +531,11 @@ const deployedContracts = {
               internalType: "contract IERC20",
               name: "_footballCoin",
               type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "_timelockBlocks",
+              type: "uint256",
             },
           ],
           stateMutability: "nonpayable",
@@ -555,6 +560,12 @@ const deployedContracts = {
               indexed: false,
               internalType: "uint256",
               name: "wagerAmount",
+              type: "uint256",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "blockNumber",
               type: "uint256",
             },
           ],
@@ -583,6 +594,19 @@ const deployedContracts = {
               name: "gameId",
               type: "uint256",
             },
+          ],
+          name: "GameFinishedByTimelock",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "gameId",
+              type: "uint256",
+            },
             {
               indexed: true,
               internalType: "address",
@@ -599,6 +623,12 @@ const deployedContracts = {
               indexed: false,
               internalType: "uint256",
               name: "wagerAmount",
+              type: "uint256",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "blockNumber",
               type: "uint256",
             },
           ],
@@ -786,12 +816,86 @@ const deployedContracts = {
               type: "bool",
             },
             {
-              internalType: "string",
+              components: [
+                {
+                  internalType: "uint256",
+                  name: "goalsHomeTeam",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "goalsAwayTeam",
+                  type: "uint256",
+                },
+              ],
+              internalType: "struct FootballGame.GameResult",
               name: "result",
-              type: "string",
+              type: "tuple",
+            },
+            {
+              internalType: "uint256",
+              name: "blockNumber",
+              type: "uint256",
             },
           ],
           stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "getGameCount",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "gameId",
+              type: "uint256",
+            },
+          ],
+          name: "getGameResult",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "uint256",
+                  name: "goalsHomeTeam",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "goalsAwayTeam",
+                  type: "uint256",
+                },
+              ],
+              internalType: "struct FootballGame.GameResult",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "gameId",
+              type: "uint256",
+            },
+          ],
+          name: "opponentClaimTimelock",
+          outputs: [],
+          stateMutability: "nonpayable",
           type: "function",
         },
         {
@@ -907,13 +1011,26 @@ const deployedContracts = {
           stateMutability: "nonpayable",
           type: "function",
         },
+        {
+          inputs: [],
+          name: "timelockBlocks",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
       ],
       inheritedFunctions: {},
     },
   },
   443: {
     FootballCoin: {
-      address: "0xc314278217Ae8D99D95BdAb3432e174A1a483Ed1",
+      address: "0x479a15a13358561c3fe9B982b69c3da191aB4F92",
       abi: [
         {
           inputs: [
@@ -1406,6 +1523,25 @@ const deployedContracts = {
           stateMutability: "nonpayable",
           type: "function",
         },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "user",
+              type: "address",
+            },
+          ],
+          name: "userBalanceOf",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
       ],
       inheritedFunctions: {
         allowance: "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol",
@@ -1429,7 +1565,7 @@ const deployedContracts = {
       },
     },
     FootballGame: {
-      address: "0x940540782303c7380b28D0781d076ad05d1cB6eA",
+      address: "0x492bD2595393678F4E7ef2a2D3136860D4d83378",
       abi: [
         {
           inputs: [
@@ -3475,7 +3611,7 @@ const deployedContracts = {
       },
     },
     FootballGame: {
-      address: "0xab2EE87906222B433AF6836b1f1588b79294f67e",
+      address: "0x1e61235A37ee5642d71c6c3f060b6E94b05EE6E7",
       abi: [
         {
           inputs: [
@@ -4498,7 +4634,7 @@ const deployedContracts = {
       },
     },
     FootballGame: {
-      address: "0x51BB389e35218E54c3bEEB89Eba750c2a308faD2",
+      address: "0xc54170C714FFd8944e78719C1D0B13C9968E4F32",
       abi: [
         {
           inputs: [
@@ -5003,9 +5139,9 @@ const deployedContracts = {
       inheritedFunctions: {},
     },
   },
-  11155420: {
+  11155111: {
     FootballCoin: {
-      address: "0xc314278217Ae8D99D95BdAb3432e174A1a483Ed1",
+      address: "0xab2EE87906222B433AF6836b1f1588b79294f67e",
       abi: [
         {
           inputs: [
@@ -5521,7 +5657,1049 @@ const deployedContracts = {
       },
     },
     FootballGame: {
-      address: "0xab2EE87906222B433AF6836b1f1588b79294f67e",
+      address: "0x072117443CEb3920d9D95d2F005b23FeC9E761aD",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "contract IERC20",
+              name: "_footballCoin",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "_timelockBlocks",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "gameId",
+              type: "uint256",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "opponent",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "wagerAmount",
+              type: "uint256",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "blockNumber",
+              type: "uint256",
+            },
+          ],
+          name: "GameAccepted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "gameId",
+              type: "uint256",
+            },
+          ],
+          name: "GameFinished",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "gameId",
+              type: "uint256",
+            },
+          ],
+          name: "GameFinishedByTimelock",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "gameId",
+              type: "uint256",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "challenger",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "opponent",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "wagerAmount",
+              type: "uint256",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "blockNumber",
+              type: "uint256",
+            },
+          ],
+          name: "GameProposed",
+          type: "event",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "gameId",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256[]",
+              name: "formation",
+              type: "uint256[]",
+            },
+          ],
+          name: "acceptGame",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "playerId",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "teamId",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "position",
+              type: "uint256",
+            },
+            {
+              internalType: "uint128",
+              name: "attack",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "defense",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "speed",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "power",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "stamina",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "technique",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "goalkeeping",
+              type: "uint128",
+            },
+          ],
+          name: "addPlayer",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "numberOfValues",
+              type: "uint256",
+            },
+            {
+              internalType: "bytes32",
+              name: "prevRandao",
+              type: "bytes32",
+            },
+          ],
+          name: "extractRandomValues",
+          outputs: [
+            {
+              internalType: "uint256[]",
+              name: "",
+              type: "uint256[]",
+            },
+          ],
+          stateMutability: "pure",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "footballCoin",
+          outputs: [
+            {
+              internalType: "contract IERC20",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "gameCount",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "gameResults",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "goalsHomeTeam",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "goalsAwayTeam",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "games",
+          outputs: [
+            {
+              internalType: "address",
+              name: "challenger",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "opponent",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "wagerAmount",
+              type: "uint256",
+            },
+            {
+              internalType: "bool",
+              name: "isFinished",
+              type: "bool",
+            },
+            {
+              components: [
+                {
+                  internalType: "uint256",
+                  name: "goalsHomeTeam",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "goalsAwayTeam",
+                  type: "uint256",
+                },
+              ],
+              internalType: "struct FootballGame.GameResult",
+              name: "result",
+              type: "tuple",
+            },
+            {
+              internalType: "uint256",
+              name: "blockNumber",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "getGameCount",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "gameId",
+              type: "uint256",
+            },
+          ],
+          name: "getGameResult",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "uint256",
+                  name: "goalsHomeTeam",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "goalsAwayTeam",
+                  type: "uint256",
+                },
+              ],
+              internalType: "struct FootballGame.GameResult",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "gameId",
+              type: "uint256",
+            },
+          ],
+          name: "opponentClaimTimelock",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "owner",
+          outputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "players",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "player_id",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "team_id",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "position",
+              type: "uint256",
+            },
+            {
+              internalType: "uint128",
+              name: "attack",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "defense",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "speed",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "power",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "stamina",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "technique",
+              type: "uint128",
+            },
+            {
+              internalType: "uint128",
+              name: "goalkeeping",
+              type: "uint128",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "opponent",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "wagerAmount",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256[]",
+              name: "formation",
+              type: "uint256[]",
+            },
+          ],
+          name: "proposeGame",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "gameId",
+              type: "uint256",
+            },
+          ],
+          name: "revealOutcome",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "timelockBlocks",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+  },
+  11155420: {
+    FootballCoin: {
+      address: "0x44CbD15D584f2D7865232123146e8e20404c6952",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "initialOwner",
+              type: "address",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          inputs: [],
+          name: "InvalidShortString",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "str",
+              type: "string",
+            },
+          ],
+          name: "StringTooLong",
+          type: "error",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "Approval",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [],
+          name: "EIP712DomainChanged",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "previousOwner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "newOwner",
+              type: "address",
+            },
+          ],
+          name: "OwnershipTransferred",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "Transfer",
+          type: "event",
+        },
+        {
+          inputs: [],
+          name: "DOMAIN_SEPARATOR",
+          outputs: [
+            {
+              internalType: "bytes32",
+              name: "",
+              type: "bytes32",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "allowance",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "approve",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "account",
+              type: "address",
+            },
+          ],
+          name: "balanceOf",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "decimals",
+          outputs: [
+            {
+              internalType: "uint8",
+              name: "",
+              type: "uint8",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "subtractedValue",
+              type: "uint256",
+            },
+          ],
+          name: "decreaseAllowance",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "eip712Domain",
+          outputs: [
+            {
+              internalType: "bytes1",
+              name: "fields",
+              type: "bytes1",
+            },
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "version",
+              type: "string",
+            },
+            {
+              internalType: "uint256",
+              name: "chainId",
+              type: "uint256",
+            },
+            {
+              internalType: "address",
+              name: "verifyingContract",
+              type: "address",
+            },
+            {
+              internalType: "bytes32",
+              name: "salt",
+              type: "bytes32",
+            },
+            {
+              internalType: "uint256[]",
+              name: "extensions",
+              type: "uint256[]",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "addedValue",
+              type: "uint256",
+            },
+          ],
+          name: "increaseAllowance",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "mint",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "name",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+          ],
+          name: "nonces",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "owner",
+          outputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "deadline",
+              type: "uint256",
+            },
+            {
+              internalType: "uint8",
+              name: "v",
+              type: "uint8",
+            },
+            {
+              internalType: "bytes32",
+              name: "r",
+              type: "bytes32",
+            },
+            {
+              internalType: "bytes32",
+              name: "s",
+              type: "bytes32",
+            },
+          ],
+          name: "permit",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "renounceOwnership",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "symbol",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "totalSupply",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "transfer",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "transferFrom",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "newOwner",
+              type: "address",
+            },
+          ],
+          name: "transferOwnership",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "user",
+              type: "address",
+            },
+          ],
+          name: "userBalanceOf",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {
+        allowance: "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol",
+        approve: "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol",
+        balanceOf: "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol",
+        decimals: "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol",
+        decreaseAllowance: "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol",
+        increaseAllowance: "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol",
+        name: "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol",
+        symbol: "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol",
+        totalSupply: "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol",
+        transfer: "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol",
+        transferFrom: "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol",
+        owner: "@openzeppelin/contracts/access/Ownable.sol",
+        renounceOwnership: "@openzeppelin/contracts/access/Ownable.sol",
+        transferOwnership: "@openzeppelin/contracts/access/Ownable.sol",
+        DOMAIN_SEPARATOR: "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol",
+        eip712Domain: "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol",
+        nonces: "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol",
+        permit: "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol",
+      },
+    },
+    FootballGame: {
+      address: "0x737BE332C0c3e72e2738842a2138051dc0c01A0A",
       abi: [
         {
           inputs: [

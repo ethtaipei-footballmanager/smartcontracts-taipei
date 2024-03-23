@@ -213,7 +213,7 @@ contract FootballGame {
 		game.isFinished = true;
 
 		address winner = determineWinner(game, result);
-		// payoutWinners(game, winner);
+		payoutWinners(game, winner);
 
 		emit GameFinished(gameId);
 	}
@@ -306,11 +306,11 @@ contract FootballGame {
 		if (winner == address(0)) {
 			require(
 				footballCoin.transfer(game.challenger, game.wagerAmount),
-				"Refund to challenger failed"
+				"Transfer to challenger failed"
 			);
 			require(
 				footballCoin.transfer(game.opponent, game.wagerAmount),
-				"Refund to opponent failed"
+				"Transfer to opponent failed"
 			);
 		} else {
 			uint256 totalPot = game.wagerAmount * 2;

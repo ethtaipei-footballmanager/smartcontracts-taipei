@@ -142,7 +142,7 @@ const config: HardhatUserConfig = {
     apiKey: {
       sepolia: process.env.ETHERSCAN_API_KEY,
       linea: process.env.LINEASCAN_API_KEY,
-      scrollSepolia: process.env.ETHERSCAN_API_KEY,
+      scrollSepolia: process.env.SCROLLSCAN_API_KEY,
       optimismSepolia: process.env.ETHERSCAN_API_KEY,
       cardona: process.env.POLYGON_API_KEY,
       thunder: process.env.ETHERSCAN_API_KEY,
@@ -161,15 +161,15 @@ const config: HardhatUserConfig = {
         network: "scrollSepolia",
         chainId: 534351,
         urls: {
-          apiURL: "https://sepolia-blockscout.scroll.io/api",
-          browserURL: "https://sepolia-blockscout.scroll.io/",
+          apiURL: "https://api-sepolia.scrollscan.com/api",
+          browserURL: "https://sepolia.scrollscan.com/",
         },
       },
       {
         network: "optimismSepolia",
         chainId: 11155420,
         urls: {
-          apiURL: "https://sepolia-optimistic.etherscan.io/api",
+          apiURL: `https://opt-sepolia.g.alchemy.com/v2/${providerApiKey}`,
           browserURL: "https://sepolia-optimistic.etherscan.io",
         },
       },

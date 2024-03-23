@@ -61,18 +61,20 @@ This function is only available after X blocks have passed since acceptGame was 
 
 ## Deployed contracts
 
-- [TEN deployed contract 0x1e61235A37ee5642d71c6c3f060b6E94b05EE6E7 in tx 0x110cba2a6825baa98798fac3b00e754f33b4c75f7067a1e16b1788103bdee407]()
-- [Scroll](https://sepolia.scrollscan.dev/address/0x51BB389e35218E54c3bEEB89Eba750c2a308faD2)
-- [Linea](https://goerli.lineascan.build/address/address/0xab2EE87906222B433AF6836b1f1588b79294f67e#code)
+- TEN deployed contract 0x492bD2595393678F4E7ef2a2D3136860D4d83378 in tx 0x651f86c420c77861bccc9e1f36eff6dcfaa3af4387fd0c0b9aa02c9402667c29
+- [Scroll](https://sepolia.scrollscan.com/address/0xc54170C714FFd8944e78719C1D0B13C9968E4F32#code)
+- [Linea](https://goerli.lineascan.build/address/address/0x1e61235A37ee5642d71c6c3f060b6E94b05EE6E7#code)
 - [Optimism](https://sepolia-optimism.etherscan.io/address/0xab2EE87906222B433AF6836b1f1588b79294f67e)
-- [Polygon zkEVM cardona](https://cardona-zkevm.polygonscan.com/address/0x072117443ceb3920d9d95d2f005b23fec9e761ad)
-- [Thundercore](https://explorer-testnet.thundercore.com/address/0x072117443CEb3920d9D95d2F005b23FeC9E761aD)
+- [Polygon zkEVM cardona](https://cardona-zkevm.polygonscan.com/address/0xab2EE87906222B433AF6836b1f1588b79294f67e)
+- [Thundercore](https://explorer-testnet.thundercore.com/address/0xc314278217Ae8D99D95BdAb3432e174A1a483Ed1)
 
 ## Links
 
-- [Taikai]()
-- [Video]()
-- [Presentation slides]()
+- [Github front-end repo](https://github.com/ethtaipei-footballmanager/frontend-taipei)
+- [Github smart contract repo](https://github.com/ethtaipei-footballmanager/smartcontracts-taipei/)
+- [Taikai](https://taikai.network/ethtaipei/hackathons/hackathon-2024/projects/clu3lzpn30igbw201tsucpoez)
+- [Presentation video]()
+- [Presentation slides](https://docs.google.com/presentation/d/1k6m42-y1edfHXn_txZ7uHJDuYUpOR82_3n5JufEhCzs/edit?usp=sharing)
 
 ## Team
 

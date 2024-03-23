@@ -14,4 +14,8 @@ contract FootballCoin is ERC20, Ownable, ERC20Permit {
 	function mint(address to, uint256 amount) public {
 		_mint(to, amount);
 	}
+
+	function userBalanceOf(address user) public view returns (uint256) {
+		return balanceOf(user);
+	}
 }
