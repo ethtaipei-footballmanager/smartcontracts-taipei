@@ -5,6 +5,7 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 contract FootballGame {
 	address public owner;
 	IERC20 public footballCoin;
+	uint public timelockBlocks;
 
 	struct Game {
 		address challenger;
@@ -13,7 +14,8 @@ contract FootballGame {
 		uint256[] challengerFormation;
 		uint256[] opponentFormation;
 		bool isFinished;
-		string result;
+		GameResult result;
+		uint blockNumber;
 	}
 
 	struct GameResult {
@@ -48,6 +50,8 @@ contract FootballGame {
 	);
 
 	event GameFinished(uint256 gameId);
+
+	event GameFinishedByTimelock(uint256 gameId);
 
 	///////////////
 	// PLAYERS   //
@@ -100,9 +104,10 @@ contract FootballGame {
 	// CONSTRUCTOR  //
 	///////////////
 
-	constructor(IERC20 _footballCoin) {
+	constructor(IERC20 _footballCoin, uint _timelockBlocks) {
 		owner = msg.sender;
 		footballCoin = _footballCoin;
+		timelockBlocks = _timelockBlocks;
 	}
 	modifier onlyOwner() {
 		require(msg.sender == owner, "Caller is not the owner");
@@ -137,7 +142,8 @@ contract FootballGame {
 			challengerFormation: new uint256[](0),
 			opponentFormation: new uint256[](0),
 			isFinished: false,
-			result: ""
+			result: GameResult({ goalsHomeTeam: 0, goalsAwayTeam: 0 }),
+			blockNumber: block.number
 		});
 
 		challenger_formation[newGameId] = formation;
@@ -166,6 +172,7 @@ contract FootballGame {
 		footballCoin.transferFrom(msg.sender, address(this), game.wagerAmount);
 
 		game.opponentFormation = formation;
+		game.blockNumber = block.number;
 
 		// Notify about game acceptance
 		emit GameAccepted(gameId, msg.sender, game.wagerAmount);
@@ -191,6 +198,24 @@ contract FootballGame {
 		payoutWinners(game, winner);
 
 		emit GameFinished(gameId);
+	}
+
+	function opponentClaimTimelock(uint256 gameId) public {
+		Game storage game = games[gameId];
+
+		require(
+			msg.sender == game.opponent,
+			"Only the opponent can claim the timelock"
+		);
+		require(
+			block.number > game.blockNumber + timelockBlocks,
+			"Opponent can claim timelock only after timelockBlocks have passed"
+		);
+
+		game.isFinished = true;
+		payoutWinners(game, game.opponent);
+
+		emit GameFinishedByTimelock(gameId);
 	}
 
 	///////////////
