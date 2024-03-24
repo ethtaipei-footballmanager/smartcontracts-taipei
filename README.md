@@ -78,12 +78,13 @@ To test the smart contract interactions via a script, execute these scripts:
 
 ## Links
 
-- [Vercel deployment linked to Scroll Sepolia](https://frontend-taipei.vercel.app/)
+- [Vercel deployment linked to Scroll Sepolia](https://ten-taipei-football.vercel.app/)
 - [Vercel deployment linked to TEN Protocol](https://game-taipei-j7zyic2r0-arjanjohan.vercel.app)
 - [Github front-end repo](https://github.com/ethtaipei-footballmanager/frontend-taipei)
 - [Github smart contract repo](https://github.com/ethtaipei-footballmanager/smartcontracts-taipei/)
 - [Taikai](https://taikai.network/ethtaipei/hackathons/hackathon-2024/projects/clu3lzpn30igbw201tsucpoez)
-- [Presentation video]()
+- [Presentation video part 1](https://www.loom.com/share/ec0c7a586a344849b9a0759d38d41513)
+- [Presentation video part 1](https://www.loom.com/share/73f075def19a4a4fbb78f22c93562f6b)
 - [Presentation slides](https://docs.google.com/presentation/d/1k6m42-y1edfHXn_txZ7uHJDuYUpOR82_3n5JufEhCzs/edit?usp=sharing)
 
 ## Team
