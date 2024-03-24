@@ -1565,7 +1565,7 @@ const deployedContracts = {
       },
     },
     FootballGame: {
-      address: "0x0238E08bFCd6252c70c3A1C30eeD44D70fe53156",
+      address: "0x40B10e8A06fBE442D82Eda1D547A278Ce372CA9A",
       abi: [
         {
           inputs: [
@@ -1784,30 +1784,6 @@ const deployedContracts = {
           type: "function",
         },
         {
-          inputs: [
-            {
-              internalType: "uint256",
-              name: "numberOfValues",
-              type: "uint256",
-            },
-            {
-              internalType: "bytes32",
-              name: "prevRandao",
-              type: "bytes32",
-            },
-          ],
-          name: "extractRandomValues",
-          outputs: [
-            {
-              internalType: "uint256[]",
-              name: "",
-              type: "uint256[]",
-            },
-          ],
-          stateMutability: "pure",
-          type: "function",
-        },
-        {
           inputs: [],
           name: "footballCoin",
           outputs: [
@@ -1841,32 +1817,13 @@ const deployedContracts = {
               type: "uint256",
             },
           ],
-          name: "gameResults",
-          outputs: [
-            {
-              internalType: "uint256",
-              name: "goalsHomeTeam",
-              type: "uint256",
-            },
-            {
-              internalType: "uint256",
-              name: "goalsAwayTeam",
-              type: "uint256",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "uint256",
-              name: "",
-              type: "uint256",
-            },
-          ],
           name: "games",
           outputs: [
+            {
+              internalType: "uint256",
+              name: "gameId",
+              type: "uint256",
+            },
             {
               internalType: "address",
               name: "challenger",
@@ -1881,11 +1838,6 @@ const deployedContracts = {
               internalType: "uint256",
               name: "wagerAmount",
               type: "uint256",
-            },
-            {
-              internalType: "bool",
-              name: "isFinished",
-              type: "bool",
             },
             {
               components: [
@@ -1909,6 +1861,11 @@ const deployedContracts = {
               name: "blockNumber",
               type: "uint256",
             },
+            {
+              internalType: "enum FootballGame.Status",
+              name: "status",
+              type: "uint8",
+            },
           ],
           stateMutability: "view",
           type: "function",
@@ -1921,37 +1878,6 @@ const deployedContracts = {
               internalType: "uint256",
               name: "",
               type: "uint256",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "uint256",
-              name: "gameId",
-              type: "uint256",
-            },
-          ],
-          name: "getGameResult",
-          outputs: [
-            {
-              components: [
-                {
-                  internalType: "uint256",
-                  name: "goalsHomeTeam",
-                  type: "uint256",
-                },
-                {
-                  internalType: "uint256",
-                  name: "goalsAwayTeam",
-                  type: "uint256",
-                },
-              ],
-              internalType: "struct FootballGame.GameResult",
-              name: "",
-              type: "tuple",
             },
           ],
           stateMutability: "view",

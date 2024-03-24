@@ -6,6 +6,8 @@
 
 ⚽ Ten Taipei Football Manager is an on-chain football manager game that leverages the privacy that TEN Protocol provides to hide players' strategies from opponents.
 
+\*\* This project is build using frontend components from a previous hackathon project [Super Leo Lig](https://github.com/arjanjohan/aleo-football). All smart contracts and contract interactions are created from scratch during this hackathon.
+
 ⚙️ Built using Solidity, Hardhat, wagmi, React and Javascript.
 
 - 🧾 **Privacy on TEN**: Players commit to a strategy privately using TEN Protocol.
@@ -67,7 +69,7 @@ To test the smart contract interactions via a script, execute these scripts:
 
 ## Deployed contracts
 
-- TEN deployed contract 0x492bD2595393678F4E7ef2a2D3136860D4d83378 in tx 0x651f86c420c77861bccc9e1f36eff6dcfaa3af4387fd0c0b9aa02c9402667c29
+- TEN deployed contract 0x40B10e8A06fBE442D82Eda1D547A278Ce372CA9A in tx 0xec761365ad14fca87c5dcbbe08a781b4bebe971bf88923e1ee5903fd4ad39fe0
 - [Scroll](https://sepolia.scrollscan.com/address/0x1806a13729aDBC602e079F5d00FbA9345BE7381c#code)
 - [Linea](https://goerli.lineascan.build/address/address/0x1e61235A37ee5642d71c6c3f060b6E94b05EE6E7#code)
 - [Optimism](https://sepolia-optimism.etherscan.io/address/0xab2EE87906222B433AF6836b1f1588b79294f67e)

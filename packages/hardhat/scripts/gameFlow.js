@@ -10,8 +10,8 @@ async function main() {
     const footballCoinAddress = addresses.FootballCoin;
     const challengerAddress = addresses.ChallengerAddress;
     const opponentAddress = addresses.OpponentAddress;
-    const mintAmount = "5000000000000000000"; // 1 token in Wei
-    const wagerAmount = "1000000000000000000"; // 1 token in Wei
+    const mintAmount = "2000000000000000000"; // 1 token in Wei
+    const wagerAmount = "2000000000000000000"; // 1 token in Wei
     const defaultFormation = [1, 4, 5, 6, 7 , 8 ,9 ,10, 11, 12 ,13]
     const challenger_signer = (await ethers.getSigners())[0];
     const opponent_signer = (await ethers.getSigners())[1];
@@ -24,8 +24,8 @@ async function main() {
 
     await new Promise(resolve => setTimeout(resolve, 1000));
     // Mint and approve tokens for challenger
-    const mintTx = await footballCoin.mint(challengerAddress, mintAmount);
-    await mintTx.wait();
+    // const mintTx = await footballCoin.mint(challengerAddress, mintAmount);
+    // await mintTx.wait();
 
 
     await new Promise(resolve => setTimeout(resolve, 1000));
@@ -47,8 +47,8 @@ async function main() {
 
     await new Promise(resolve => setTimeout(resolve, 3000));
     // Mint and approve tokens for challenger
-    const mintTx2 = await footballCoin.mint(opponentAddress, mintAmount);
-    await mintTx2.wait();
+    // const mintTx2 = await footballCoin.mint(opponentAddress, mintAmount);
+    // await mintTx2.wait();
 
     await new Promise(resolve => setTimeout(resolve, 3000));
     const approveTx2 = await footballCoin.approve(footballGameAddress, mintAmount);
