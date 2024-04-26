@@ -38,10 +38,13 @@ contract FootballGame {
 	mapping(uint256 => uint256[]) private challenger_formation;
 	mapping(uint256 => Game) public games;
 	uint256 public gameCount;
+	bool public test;
 
 	function getGameCount() public view returns (uint256) {
 		return gameCount;
 	}
+
+	function ignore() public view {}
 
 	///////////////
 	// EVENTS  //

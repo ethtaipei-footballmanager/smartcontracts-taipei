@@ -70,6 +70,9 @@ To test the smart contract interactions via a script, execute these scripts:
 ## Deployed contracts
 
 - TEN deployed contract 0x40B10e8A06fBE442D82Eda1D547A278Ce372CA9A in tx 0xec761365ad14fca87c5dcbbe08a781b4bebe971bf88923e1ee5903fd4ad39fe0
+  ten token old 0x479a15a13358561c3fe9B982b69c3da191aB4F92
+  ten token new 0x7d671aed0E98286525a94b2F56422375EFc79886
+  ten new 0xA8FCcd8B3b0e5b68E9171585fF6b2D514dc2e3a2
 - [Scroll](https://sepolia.scrollscan.com/address/0x1806a13729aDBC602e079F5d00FbA9345BE7381c#code)
 - [Linea](https://goerli.lineascan.build/address/address/0x1e61235A37ee5642d71c6c3f060b6E94b05EE6E7#code)
 - [Optimism](https://sepolia-optimism.etherscan.io/address/0xab2EE87906222B433AF6836b1f1588b79294f67e)

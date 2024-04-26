@@ -39,8 +39,10 @@ async function main() {
     await proposeTx.wait();
 
     console.log("Game proposed");
+    console.log(proposeTx);
     // Assume game ID is 1 for this example. Retrieve actual game ID from the event log in a real scenario.
     const gameId = await footballGame.getGameCount();
+    console.log("game id = ", gameId)
 
     footballGame = await FootballGameContract.attach(footballGameAddress).connect(opponent_signer);
     footballCoin = await FootballCoinContract.attach(footballCoinAddress).connect(opponent_signer);

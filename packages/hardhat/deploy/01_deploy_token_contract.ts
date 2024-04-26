@@ -19,6 +19,7 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
     with a random private key in the .env file (then used on hardhat.config.ts)
     You can run the `yarn account` command to check your balance in every network.
   */
+
   const { deployer } = await hre.getNamedAccounts();
   const { deploy } = hre.deployments;
 
@@ -32,6 +33,7 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
     autoMine: true,
   });
 
+  console.log("AVH1");
   // Get the deployed contract to interact with it after deploying.
   const yourContract = await hre.ethers.getContract<Contract>("FootballCoin", deployer);
   console.log("🏈 FootballGame deployed to:", yourContract.address);
